@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
-  Sprout, 
   LayoutDashboard, 
   UserPlus, 
   Users, 
@@ -40,23 +39,16 @@ const Sidebar = ({ isOpen, onClose }) => {
     <>
       {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
       <aside className={`sidebar-root admin-sidebar ${isOpen ? 'mobile-open' : ''}`}>
-        <div className="sidebar-header">
-          <NavLink to="/dashboard" className="sidebar-brand" onClick={onClose}>
-            <Sprout className="sidebar-brand-icon" />
-            <div className="sidebar-brand-info">
-              <span className="sidebar-brand-name">Farm<span>Direct</span></span>
-              <span className="sidebar-brand-sub">Admin Panel</span>
-            </div>
-          </NavLink>
-          {isOpen && (
+        {isOpen && (
+          <div className="sidebar-mobile-close-bar">
             <button 
               onClick={onClose} 
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
+              className="sidebar-close-btn"
             >
               <X size={20} />
             </button>
-          )}
-        </div>
+          </div>
+        )}
 
         <ul className="sidebar-nav-list">
           {navItems.map((item) => {
