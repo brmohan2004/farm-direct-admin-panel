@@ -4,13 +4,13 @@
   border-right: 1px solid var(--border-default);
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   position: sticky;
-  top: 0;
+  top: var(--header-height);
   left: 0;
   z-index: 45;
   overflow-y: auto;
-  padding: 16px 12px;
+  padding: 12px;
   flex-shrink: 0;
 }
 
@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
 }
 
 .sidebar-close-btn {
@@ -39,8 +39,7 @@
 .sidebar-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
+  gap: 3px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -54,11 +53,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 14px;
+  padding: 9px 12px;
   border-radius: var(--radius-md);
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   transition: all var(--transition-fast);
 }
@@ -77,12 +76,12 @@
 .sidebar-link-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .sidebar-link-icon {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   flex-shrink: 0;
 }
 
@@ -97,14 +96,14 @@
 }
 
 .sidebar-help-card {
-  margin-top: 24px;
+  margin-top: 12px;
   background-color: var(--primary-subtle);
   border: 1px solid var(--primary-border);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .help-card-title {
@@ -112,25 +111,25 @@
   align-items: center;
   gap: 6px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
 }
 
 .help-card-desc {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--text-secondary);
   margin: 0;
 }
 
 .help-card-link {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--primary);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .help-card-link:hover {
@@ -148,6 +147,7 @@
     top: 0;
     left: 0;
     bottom: 0;
+    height: 100vh;
     z-index: 70;
     box-shadow: 10px 0 25px rgba(0, 0, 0, 0.15);
     animation: slideRight 250ms ease;
