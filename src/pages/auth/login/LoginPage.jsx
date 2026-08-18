@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, LogIn, KeyRound } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  // Pre-filled dummy credentials as requested
+  // Pre-filled dummy credentials
   const [email, setEmail] = useState('admin@farmdirect.com');
   const [password, setPassword] = useState('admin123');
   const [showPassword, setShowPassword] = useState(false);
@@ -27,17 +27,6 @@ const LoginPage = () => {
       <div className="auth-header">
         <h2 className="auth-title">Admin Portal Login</h2>
         <p className="auth-subtitle">Sign in to manage farm supply, inventory & orders.</p>
-      </div>
-
-      {/* Pre-filled Dummy Credentials Banner */}
-      <div className="demo-credentials-banner">
-        <KeyRound className="demo-banner-icon" size={18} />
-        <div className="demo-banner-content">
-          <span className="demo-banner-title">Demo Admin Credentials Pre-filled</span>
-          <span className="demo-banner-text">
-            Email: <code>admin@farmdirect.com</code> | Password: <code>admin123</code>
-          </span>
-        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="auth-form">
