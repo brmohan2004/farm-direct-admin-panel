@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Sprout } from 'lucide-react';
 import Search from './Search';
 import Notification from './Notification';
@@ -9,13 +10,13 @@ const Header = () => {
   return (
     <header className="header-root">
       <div className="header-left">
-        <div className="mobile-logo-wrap">
-          <Sprout className="mobile-logo-icon" />
-          <div className="mobile-logo-text">
-            <span className="mobile-brand-title">Farm<span style={{ color: 'var(--primary)' }}>Direct</span></span>
-            <span className="mobile-brand-sub">Admin Panel</span>
+        <NavLink to="/dashboard" className="header-logo-wrap">
+          <Sprout className="header-logo-icon" />
+          <div className="header-logo-text">
+            <span className="header-brand-title">Farm<span style={{ color: 'var(--primary)' }}>Direct</span></span>
+            <span className="header-brand-sub">Admin Panel</span>
           </div>
-        </div>
+        </NavLink>
       </div>
 
       <div className="header-center">
