@@ -1,0 +1,102 @@
+.farmers-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.farmers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.farmer-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-fast);
+}
+
+.farmer-item-row:hover {
+  border-color: var(--border-default);
+  background-color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.farmer-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.farmer-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.farmer-avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary-subtle);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.farmer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.farmer-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.farmer-location {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.farmer-date {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.status-badge-pending {
+  background-color: #fef3c7;
+  color: #b45309;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-badge-approved {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}

@@ -1,0 +1,90 @@
+.header-root {
+  height: var(--header-height);
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-logo-wrap {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.mobile-logo-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--primary);
+}
+
+.mobile-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.mobile-brand-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.mobile-brand-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 460px;
+  margin: 0 16px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .header-root {
+    padding: 0 var(--space-md);
+  }
+}
+
+@media (max-width: 640px) {
+  .header-root {
+    padding: 0 12px;
+    height: 56px;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .mobile-logo-wrap {
+    display: flex;
+  }
+
+  .desktop-only-action {
+    display: none !important;
+  }
+}

@@ -1,0 +1,7 @@
+.sales-chart-bar {
+  transition: all var(--transition-fast);
+}
+
+.sales-chart-bar:hover {
+  opacity: 0.85;
+}

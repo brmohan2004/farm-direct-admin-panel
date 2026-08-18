@@ -1,0 +1,362 @@
+/* ==========================================================================
+   Global Responsive & Fluid Design System
+   Theme: Pure Crisp Light / White Theme
+   Structure: Split sectioned per device layer (Base / Desktop / Tablet / Mobile)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE SYSTEM & COLOR VARIABLES (All Screens)
+   -------------------------------------------------------------------------- */
+:root {
+  /* --- Color Palette (White Theme) --- */
+  --bg-main: #ffffff;
+  --bg-surface: #f9fafb;
+  --bg-card: #ffffff;
+  --bg-subtle: #f3f4f6;
+  --bg-hover: #f3f4f6;
+  --bg-active: #e5e7eb;
+
+  /* Brand / Primary Emerald Palette */
+  --primary: #16a34a;
+  --primary-hover: #15803d;
+  --primary-subtle: #f0fdf4;
+  --primary-border: #bbf7d0;
+
+  --accent: #2563eb;
+  --accent-subtle: #eff6ff;
+
+  /* Typography Colors */
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --text-inverse: #ffffff;
+
+  /* Borders & Shadows */
+  --border-light: #f3f4f6;
+  --border-default: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  /* Typography Families */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Shared Radii & Transitions */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Default Responsive Tokens (Fluid Scale Baseline) --- */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);   /* ~12px - 14px */
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);       /* ~14px - 16px */
+  --font-size-base: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);    /* ~16px - 18px */
+  --font-size-lg: clamp(1.125rem, 1.05rem + 0.5vw, 1.35rem);   /* ~18px - 21.6px */
+  --font-size-xl: clamp(1.25rem, 1.15rem + 0.75vw, 1.65rem);   /* ~20px - 26.4px */
+  --font-size-2xl: clamp(1.5rem, 1.35rem + 1.2vw, 2.25rem);    /* ~24px - 36px */
+  --font-size-3xl: clamp(1.875rem, 1.6rem + 1.8vw, 3rem);      /* ~30px - 48px */
+  --font-size-4xl: clamp(2.25rem, 1.8rem + 2.5vw, 3.75rem);    /* ~36px - 60px */
+
+  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.875rem);
+  --space-md: clamp(0.875rem, 0.75rem + 0.8vw, 1.5rem);
+  --space-lg: clamp(1.25rem, 1rem + 1.2vw, 2.25rem);
+  --space-xl: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+
+  --header-height: 64px;
+  --sidebar-width: 260px;
+  --mobile-nav-height: 64px;
+  --grid-min-width: 300px;
+  --card-padding: var(--space-md);
+  --media-radius: var(--radius-md);
+}
+
+/* Enforce Light / White Mode Always */
+html, body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Root Layout Container */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  border: none;
+  text-align: left;
+}
+
+/* Global Fluid Elements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+h1 { font-size: var(--font-size-3xl); letter-spacing: -0.02em; }
+h2 { font-size: var(--font-size-2xl); letter-spacing: -0.01em; }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+p { margin: 0 0 var(--space-sm) 0; color: var(--text-secondary); font-size: var(--font-size-base); }
+span, label, input, button { font-size: var(--font-size-sm); }
+
+/* Global Flexible Media & Image Container */
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--media-radius);
+}
+
+/* Global Dynamic Card Component Baseline */
+.card, .page-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  width: 100%;
+}
+
+.card:hover, .page-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+/* Global Fluid Grid Utility */
+.fluid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-width), 1fr));
+  gap: var(--space-md);
+  width: 100%;
+}
+
+/* Fluid Page Containers */
+.page-container {
+  padding: var(--space-md) var(--space-lg);
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. DESKTOP SCREEN STYLES (min-width: 1025px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  :root {
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.8125rem;  /* 13px */
+    --font-size-base: 0.875rem; /* 14px */
+    --font-size-lg: 1.05rem;    /* 16.8px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.5rem;    /* 40px */
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 14px;
+    --space-lg: 18px;
+    --space-xl: 24px;
+
+    --header-height: 56px;
+    --sidebar-width: 235px;
+
+    --card-padding: 14px 16px;
+    --grid-min-width: 260px;
+  }
+
+  .admin-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-surface);
+  }
+
+  .admin-header {
+    height: var(--header-height);
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-md);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .admin-body {
+    display: flex;
+    flex: 1;
+  }
+
+  .admin-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-main);
+    border-right: 1px solid var(--border-default);
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .admin-content {
+    flex: 1;
+    background-color: var(--bg-surface);
+    min-width: 0;
+    padding-bottom: var(--space-lg);
+  }
+
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. TABLET SCREEN STYLES (max-width: 1024px and min-width: 641px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) and (min-width: 641px) {
+  :root {
+    --font-size-xs: 0.8125rem;  /* 13px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 0.95rem;  /* 15.2px */
+    --font-size-lg: 1.15rem;    /* 18.4px */
+    --font-size-xl: 1.35rem;    /* 21.6px */
+    --font-size-2xl: 1.75rem;   /* 28px */
+    --font-size-3xl: 2.15rem;   /* 34.4px */
+    --font-size-4xl: 2.75rem;   /* 44px */
+
+    --card-padding: var(--space-md);
+    --grid-min-width: 240px;
+    --header-height: 60px;
+  }
+
+  .admin-sidebar {
+    display: none;
+  }
+
+  .admin-content {
+    padding-bottom: calc(var(--mobile-nav-height) + var(--space-lg));
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--mobile-nav-height);
+    background-color: var(--bg-main);
+    border-top: 1px solid var(--border-default);
+    z-index: 50;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .page-container {
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   4. MOBILE SCREEN STYLES (max-width: 640px)
+   --------------------------------------------------------------------------
+   Note: Changing typography variables here directly reflects across ALL pages
+   on mobile devices.
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  :root {
+    /* Mobile Fluid Typography Scale - Easily adjusted to scale mobile text globally */
+    --font-size-xs: 0.75rem;   /* 12px */
+    --font-size-sm: 0.8125rem; /* 13px */
+    --font-size-base: 0.875rem;/* 14px */
+    --font-size-lg: 1rem;      /* 16px */
+    --font-size-xl: 1.1875rem;/* 19px */
+    --font-size-2xl: 1.375rem; /* 22px */
+    --font-size-3xl: 1.625rem; /* 26px */
+    --font-size-4xl: 2rem;     /* 32px */
+
+    /* Mobile Layout & Dynamic Card Sizes */
+    --card-padding: var(--space-sm);
+    --grid-min-width: 100%;    /* Single column stack for small mobile cards */
+    --header-height: 56px;
+    --mobile-nav-height: 56px;
+  }
+
+  .admin-sidebar {
+    display: none;
+  }
+
+  .admin-content {
+    padding-bottom: calc(var(--mobile-nav-height) + var(--space-md));
+  }
+
+  .admin-header {
+    padding: 0 var(--space-sm);
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--mobile-nav-height);
+    background-color: var(--bg-main);
+    border-top: 1px solid var(--border-default);
+    z-index: 50;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .page-container {
+    padding: var(--space-sm);
+    gap: var(--space-sm);
+  }
+
+  .user-name {
+    display: none;
+  }
+}
