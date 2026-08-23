@@ -1,0 +1,32 @@
+/* AddProductHeader Styles */
+.add-product-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: var(--space-md, 16px);
+}
+
+.add-product-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.add-product-subtitle {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .add-product-title {
+    font-size: 1.35rem;
+  }
+
+  .add-product-subtitle {
+    font-size: 0.8125rem;
+  }
+}

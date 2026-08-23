@@ -1,18 +1,13 @@
 /**
  * InventoryPage Component
  * 
- * Inventory management page component.
+ * Re-exports ProductsPage to serve Inventory Stock Management
  */
 
-import React from 'react';
+import ProductsPage from '../../product-management/products/ProductsPage';
 
-const InventoryPage = () => {
-  return (
-    <div className="page-container">
-      <h1>InventoryPage</h1>
-      <p>The page is under developement.</p>
-    </div>
-  );
+const InventoryPage = (props) => {
+  return <ProductsPage {...props} />;
 };
 
 export default InventoryPage;

@@ -1,0 +1,68 @@
+/* AddProductActions Styles */
+.add-product-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.add-product-cancel-btn {
+  background-color: #ffffff;
+  border: 1.5px solid var(--primary, #16a34a);
+  color: var(--primary, #16a34a);
+  border-radius: var(--radius-md, 10px);
+  padding: 12px 32px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.add-product-cancel-btn:hover {
+  background-color: var(--primary-subtle, #f0fdf4);
+  transform: translateY(-1px);
+}
+
+.add-product-save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--primary, #16a34a);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md, 10px);
+  padding: 12px 36px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.add-product-save-btn:hover {
+  background-color: var(--primary-hover, #15803d);
+  box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
+  transform: translateY(-1px);
+}
+
+.save-btn-icon {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .add-product-actions-bar {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    gap: 10px;
+  }
+
+  .add-product-cancel-btn,
+  .add-product-save-btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+  }
+}

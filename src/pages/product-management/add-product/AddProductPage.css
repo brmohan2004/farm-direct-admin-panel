@@ -1,0 +1,64 @@
+/* ==========================================================================
+   AddProductPage Master Styles
+   ========================================================================== */
+
+.add-product-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 20px);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--page-padding-y, 24px) var(--page-padding-x, 32px);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Toast Banner */
+.add-product-toast-notification {
+  position: fixed;
+  top: 70px;
+  right: 24px;
+  z-index: 999;
+  padding: 12px 20px;
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-xl);
+  animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.add-product-toast-notification.toast--success {
+  background-color: var(--text-primary, #111827);
+  color: #ffffff;
+}
+
+.add-product-toast-notification.toast--error {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .add-product-page-container {
+    padding: var(--page-padding-y, 14px) var(--page-padding-x, 14px);
+    gap: 14px;
+  }
+
+  .add-product-toast-notification {
+    top: 64px;
+    left: 14px;
+    right: 14px;
+    text-align: center;
+  }
+}

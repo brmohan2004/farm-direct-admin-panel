@@ -1,0 +1,162 @@
+/* ProductsStatCards Styles */
+.products-stat-cards-wrapper {
+  width: 100%;
+}
+
+.products-stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md, 16px);
+  width: 100%;
+}
+
+.product-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #f3f4f6);
+  border-radius: var(--radius-lg, 16px);
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.product-stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong, #d1d5db);
+}
+
+.product-stat-card.is-active {
+  border-color: var(--primary, #16a34a);
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15), var(--shadow-sm);
+  background-color: #ffffff;
+}
+
+/* Circle colors matching design screenshot */
+.stat-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast, 150ms ease);
+}
+
+.product-stat-card:hover .stat-icon-circle {
+  transform: scale(1.05);
+}
+
+/* Types */
+.icon-circle--items {
+  background-color: #e6f4ea;
+  color: #16a34a;
+}
+
+.icon-circle--quantity {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.icon-circle--value {
+  background-color: #fff7ed;
+  color: #f59e0b;
+}
+
+.icon-circle--lowstock {
+  background-color: #f3e8ff;
+  color: #a855f7;
+}
+
+/* Info text */
+.stat-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-card-val {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  line-height: 1.1;
+}
+
+.stat-card-lbl {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary, #6b7280);
+}
+
+/* --------------------------------------------------------------------------
+   Tablet & Mobile Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .products-stat-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .product-stat-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .stat-icon-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stat-card-val {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .products-stat-cards-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .products-stat-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-stat-card {
+    flex: 1 0 auto;
+    min-width: calc(25% - 6px);
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: var(--radius-md, 10px);
+    justify-content: center;
+    border: 1px solid var(--border-default, #e5e7eb);
+  }
+
+  .stat-icon-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .stat-card-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .stat-card-val {
+    font-size: 1.1rem;
+  }
+
+  .stat-card-lbl {
+    font-size: 0.75rem;
+  }
+}

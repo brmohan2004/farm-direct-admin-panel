@@ -1,0 +1,118 @@
+/* IconInput Component Styles */
+.icon-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.icon-input-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary, #374151);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.required-asterisk {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.icon-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 4px 6px;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.icon-input-wrapper:focus-within {
+  border-color: var(--primary, #16a34a);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.icon-input-wrapper.is-textarea {
+  align-items: flex-start;
+  padding: 8px 10px;
+}
+
+/* Light Green Icon Badge matching design screenshots */
+.input-icon-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.input-badge-icon {
+  color: var(--primary, #16a34a);
+}
+
+.icon-input-field {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.875rem;
+  color: var(--text-primary, #111827);
+  padding: 8px 4px;
+  font-family: inherit;
+  width: 100%;
+}
+
+.icon-input-field::placeholder {
+  color: var(--text-muted, #9ca3af);
+  font-size: 0.875rem;
+}
+
+/* Select Container */
+.select-field-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.icon-input-field.select-field {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 28px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.select-chevron-icon {
+  position: absolute;
+  right: 6px;
+  pointer-events: none;
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Textarea Field */
+.icon-input-field.textarea-field {
+  resize: vertical;
+  min-height: 80px;
+  padding: 4px 4px 20px 4px;
+}
+
+.textarea-char-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: var(--text-muted, #9ca3af);
+  pointer-events: none;
+}

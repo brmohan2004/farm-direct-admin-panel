@@ -1,0 +1,51 @@
+/* AddProductForm Styles */
+.add-product-form-card {
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 24px 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  width: 100%;
+}
+
+.add-product-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  width: 100%;
+}
+
+.add-product-form-left,
+.add-product-form-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+/* Unit and Stock Quantity side-by-side row */
+.unit-quantity-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .add-product-form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .add-product-form-card {
+    padding: 16px;
+    border-radius: var(--radius-md, 12px);
+  }
+}
+
+@media (max-width: 480px) {
+  .unit-quantity-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}

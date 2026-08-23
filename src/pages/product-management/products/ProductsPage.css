@@ -1,0 +1,90 @@
+/* ==========================================================================
+   ProductsPage Master Styles
+   ========================================================================== */
+
+.products-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--page-padding-y, 24px) var(--page-padding-x, 32px);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Toast Notification Banner */
+.products-toast-notification {
+  position: fixed;
+  top: 70px;
+  right: 24px;
+  z-index: 999;
+  background-color: var(--text-primary, #111827);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-xl);
+  animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Desktop & Tablet Display Toggle
+   -------------------------------------------------------------------------- */
+.products-desktop-tablet-view {
+  display: block;
+  width: 100%;
+}
+
+.products-mobile-cards-view {
+  display: none;
+  width: 100%;
+}
+
+.products-desktop-pagination {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Responsive Rules (max-width: 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .products-page-container {
+    padding: var(--page-padding-y, 14px) var(--page-padding-x, 14px);
+    gap: 12px;
+  }
+
+  .products-desktop-tablet-view {
+    display: none !important;
+  }
+
+  .products-mobile-cards-view {
+    display: block !important;
+  }
+
+  .products-desktop-pagination {
+    display: none !important;
+  }
+
+  .products-toast-notification {
+    top: 64px;
+    left: 14px;
+    right: 14px;
+    text-align: center;
+  }
+}
