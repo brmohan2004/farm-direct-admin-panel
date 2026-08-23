@@ -147,6 +147,9 @@ img, video, svg {
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
   width: 100%;
+  /* Global Page Padding Variables */
+  --page-padding-x: 32px;
+  --page-padding-y: 24px;
 }
 
 .card:hover, .page-card:hover {
@@ -162,15 +165,21 @@ img, video, svg {
   width: 100%;
 }
 
-/* Fluid Page Containers */
-.page-container {
-  padding: var(--space-md) var(--space-lg);
+/* Fluid Page Containers - Standardized left/right side spacing across ALL pages */
+.page-container,
+.farmer-requests-page-container,
+.approved-farmers-page-container,
+.farmer-details-page-wrapper,
+[class*="-page-container"],
+[class*="-page-wrapper"] {
+  padding: var(--page-padding-y) var(--page-padding-x);
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  box-sizing: border-box;
 }
 
 
@@ -199,6 +208,8 @@ img, video, svg {
 
     --card-padding: 14px 16px;
     --grid-min-width: 260px;
+    --page-padding-x: 32px;
+    --page-padding-y: 24px;
   }
 
   .admin-layout {
@@ -268,6 +279,8 @@ img, video, svg {
     --card-padding: var(--space-md);
     --grid-min-width: 240px;
     --header-height: 60px;
+    --page-padding-x: 18px;
+    --page-padding-y: 16px;
   }
 
   .admin-sidebar {
@@ -291,10 +304,6 @@ img, video, svg {
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-  }
-
-  .page-container {
-    padding: var(--space-sm) var(--space-md);
   }
 }
 
@@ -322,6 +331,8 @@ img, video, svg {
     --grid-min-width: 100%;    /* Single column stack for small mobile cards */
     --header-height: 56px;
     --mobile-nav-height: 56px;
+    --page-padding-x: 14px;
+    --page-padding-y: 14px;
   }
 
   .admin-sidebar {
@@ -358,6 +369,24 @@ img, video, svg {
 
   .user-name {
     display: none;
+  }
+}
+
+/* Hide Common Header & Bottom Navigation on Mobile for Farmer Details Page */
+@media (max-width: 768px) {
+  .admin-layout.hide-mobile-header-nav .header-root,
+  .admin-layout.hide-mobile-header-nav .admin-header {
+    display: none !important;
+  }
+
+  .admin-layout.hide-mobile-header-nav .mobile-bottom-nav-root,
+  .admin-layout.hide-mobile-header-nav .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  .admin-layout.hide-mobile-header-nav .admin-content {
+    padding-bottom: var(--space-md) !important;
+    padding-top: 0 !important;
   }
 }
 

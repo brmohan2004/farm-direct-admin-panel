@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import rameshImg from '../../../assets/farmer.png';
 import selviImg from '../../../assets/image copy.png';
 import manojImg from '../../../assets/image copy 2.png';
@@ -301,9 +302,15 @@ const FarmerRequestsPage = () => {
     showToast(`Registration request for "${farmer.name}" rejected.`);
   };
 
+  const navigate = useNavigate();
+
   const handleViewDetails = (farmer) => {
     setSelectedFarmer(farmer);
-    setIsDetailsModalOpen(true);
+    if (farmer.status === 'Approved') {
+      navigate(`/farmer-management/farmer-details/${farmer.farmId || farmer.id || 'FD12345'}`);
+    } else {
+      setIsDetailsModalOpen(true);
+    }
   };
 
   const handleExport = () => {

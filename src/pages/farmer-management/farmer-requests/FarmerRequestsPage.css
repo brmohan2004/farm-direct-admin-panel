@@ -6,7 +6,6 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: var(--space-md, 16px);
   position: relative;
 }
 
@@ -59,7 +58,6 @@
 /* Responsive Media Queries */
 @media (max-width: 640px) {
   .farmer-requests-page-container {
-    padding: var(--space-sm, 12px);
     gap: var(--space-sm, 12px);
   }
 

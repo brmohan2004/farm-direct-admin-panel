@@ -58,6 +58,8 @@ export const AppRoutes = () => {
           <Route path="/farmer-management/verification" element={<FarmerVerificationPage />} />
           <Route path="/farmer-management/farmers" element={<FarmersPage />} />
           <Route path="/farmer-management/farmers/:id" element={<FarmerDetailsPage />} />
+          <Route path="/farmer-management/farmer-details" element={<FarmerDetailsPage />} />
+          <Route path="/farmer-management/farmer-details/:id" element={<FarmerDetailsPage />} />
           
           {/* Stock Management */}
           <Route path="/stock-management/inbox" element={<StockInboxPage />} />

@@ -1,0 +1,151 @@
+/* FarmersPage Component Styles */
+.approved-farmers-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.farmers-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.farmers-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  font-family: var(--font-heading, sans-serif);
+}
+
+.farmers-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.farmers-search-bar {
+  width: 100%;
+  max-width: 480px;
+}
+
+.farmers-table-card {
+  background-color: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+}
+
+.approved-farmers-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.approved-farmers-table th {
+  padding: 12px 14px;
+  color: #4b5563;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.farmer-row {
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.farmer-row:hover {
+  background-color: #f9fafb;
+}
+
+.farmer-row td {
+  padding: 14px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #111827;
+}
+
+.farmer-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cell-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #bbf7d0;
+  object-fit: cover;
+}
+
+.cell-name {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cell-id {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-muted {
+  color: #9ca3af;
+}
+
+.icon-green {
+  color: #16a34a;
+}
+
+.badge-approved {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.btn-view-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #86efac;
+  background-color: #ffffff;
+  color: #15803d;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.btn-view-profile:hover {
+  background-color: #f0fdf4;
+  border-color: #16a34a;
+}
