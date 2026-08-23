@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
   Home, 
-  Package, 
+  CreditCard, 
   Inbox, 
   Users, 
   Grid, 
-  CreditCard, 
-  Wallet, 
+  ShoppingCart, 
+  UserPlus, 
+  Package, 
   Layers, 
   Map,
   ChevronRight,
@@ -17,38 +18,66 @@ import './MobileBottomNav.css';
 
 const mainNavItems = [
   { label: 'Home', path: '/dashboard', icon: Home },
-  { label: 'Products', path: '/product-management/products', icon: Package },
+  { label: 'Transactions', path: '/payment-management/payments', icon: CreditCard },
   { label: 'Stock Inbox', path: '/stock-management/inbox', icon: Inbox, badge: 24 },
   { label: 'Consumers', path: '/consumer-management/consumers', icon: Users },
 ];
 
 const moreNavItems = [
-  { label: 'Payment', path: '/payment-management/payments', icon: CreditCard },
-  { label: 'Payout', path: '/farmer-payouts/payouts', icon: Wallet },
+  { label: 'Orders', path: '/order-management/orders', icon: ShoppingCart, badge: 56 },
+  { label: 'Farmer Requests', path: '/farmer-management/requests', icon: UserPlus, badge: 18 },
+  { label: 'Products', path: '/product-management/products', icon: Package },
   { label: 'Categories', path: '/product-management/categories', icon: Layers },
 ];
 
 const MobileBottomNav = () => {
   const [showMore, setShowMore] = useState(false);
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
   const location = useLocation();
+
+  const isHomePage = location.pathname === '/dashboard' || location.pathname === '/';
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 20 && currentScrollY > lastScrollY) {
+        setIsScrolledDown(true);
+      } else if (currentScrollY <= 20 || currentScrollY < lastScrollY - 10) {
+        setIsScrolledDown(false);
+      }
+      
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isMoreActive = moreNavItems.some(item => location.pathname.startsWith(item.path));
 
   return (
     <>
-      {/* Floating View Farmers Banner Floating Above Mobile Navbar */}
-      <NavLink to="/farmer-management/farmers" className="floating-view-farmers-btn">
-        <div className="floating-farmers-icon-circle">
-          <Map size={18} />
-        </div>
-        <div className="floating-farmers-text">
-          <span className="floating-farmers-title">View Farmers</span>
-          <span className="floating-farmers-subtitle">Explore on map</span>
-        </div>
-        <div className="floating-farmers-arrow-circle">
-          <ChevronRight size={15} />
-        </div>
-      </NavLink>
+      {/* Floating View Farmers Banner Floating Above Mobile Navbar - ONLY on Home page */}
+      {isHomePage && (
+        <NavLink 
+          to="/farmer-management/farmers" 
+          className={`floating-view-farmers-btn ${isScrolledDown ? 'hidden' : ''}`}
+        >
+          <div className="floating-farmers-icon-circle">
+            <Map size={18} />
+          </div>
+          <div className="floating-farmers-text">
+            <span className="floating-farmers-title">View Farmers</span>
+            <span className="floating-farmers-subtitle">Explore on map</span>
+          </div>
+          <div className="floating-farmers-arrow-circle">
+            <ChevronRight size={15} />
+          </div>
+        </NavLink>
+      )}
 
       <nav className="mobile-bottom-nav-root mobile-bottom-nav">
         {mainNavItems.map((item) => {
@@ -112,6 +141,9 @@ const MobileBottomNav = () => {
                   >
                     <div className="more-grid-icon-box">
                       <Icon size={20} />
+                      {item.badge !== undefined && (
+                        <span className="more-grid-badge">{item.badge}</span>
+                      )}
                     </div>
                     <span className="more-grid-label">{item.label}</span>
                   </NavLink>

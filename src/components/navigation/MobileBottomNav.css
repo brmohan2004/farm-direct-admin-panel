@@ -78,12 +78,13 @@
   box-shadow: 0 2px 4px rgba(239, 68, 68, 0.35);
 }
 
-/* Floating View Farmers Pill Banner */
 .floating-view-farmers-btn {
   position: fixed;
   bottom: 80px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -94,11 +95,19 @@
   text-decoration: none;
   z-index: 49;
   box-shadow: 0 8px 20px rgba(21, 128, 61, 0.35);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 300ms ease, box-shadow 200ms ease;
   white-space: nowrap;
+  pointer-events: auto;
 }
 
-.floating-view-farmers-btn:hover {
+.floating-view-farmers-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(24px);
+  pointer-events: none;
+}
+
+.floating-view-farmers-btn:not(.hidden):hover {
   transform: translateX(-50%) translateY(-2px);
   box-shadow: 0 10px 24px rgba(21, 128, 61, 0.45);
 }
@@ -233,6 +242,7 @@
 }
 
 .more-grid-icon-box {
+  position: relative;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -242,6 +252,25 @@
   justify-content: center;
   box-shadow: var(--shadow-sm);
   color: var(--primary);
+}
+
+.more-grid-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.35);
 }
 
 .more-grid-label {

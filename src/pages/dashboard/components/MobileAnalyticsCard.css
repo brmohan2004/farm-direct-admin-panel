@@ -38,6 +38,14 @@
   width: 100%;
 }
 
+.mobile-analytics-card .chart-card {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+  min-height: auto;
+}
+
 .analytics-vertical-tab-group {
   display: flex;
   flex-direction: column;

@@ -78,7 +78,8 @@ export const AppRoutes = () => {
           <Route path="/order-management/orders" element={<OrdersPage />} />
           <Route path="/order-management/orders/:id" element={<OrderDetailsPage />} />
 
-          {/* Payment Management */}
+          {/* Payment / Transactions Management */}
+          <Route path="/transactions" element={<Navigate to="/payment-management/payments" replace />} />
           <Route path="/payment-management/payments" element={<PaymentsPage />} />
           <Route path="/payment-management/payments/:id" element={<PaymentDetailsPage />} />
 

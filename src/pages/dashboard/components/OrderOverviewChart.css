@@ -2,19 +2,22 @@
   background-color: var(--bg-card);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
+  padding: 16px;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  min-height: 295px;
+  min-height: 310px;
+  position: relative;
 }
 
 .chart-card-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  position: relative;
+  z-index: 10;
 }
 
 .chart-title {
@@ -22,31 +25,108 @@
   font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
-  margin: 0;
+  margin: 0 0 2px 0;
+}
+
+.chart-sub-header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.chart-metric-total {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.chart-metric-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: lowercase;
+}
+
+/* Dropdown Menu Styles */
+.chart-dropdown-wrapper {
+  position: relative;
 }
 
 .chart-dropdown {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
-  padding: 4px 10px;
+  padding: 5px 10px;
   font-size: 12px;
+  font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
   outline: none;
+  transition: all var(--transition-fast);
 }
 
 .chart-dropdown:hover {
   border-color: var(--border-strong);
+  color: var(--text-primary);
+  background-color: var(--bg-subtle);
 }
 
+.chart-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 50;
+  min-width: 110px;
+  animation: dropdownFade 150ms ease;
+}
+
+.dropdown-menu-item {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dropdown-menu-item:hover {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.dropdown-menu-item.active {
+  background-color: var(--primary-subtle);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SVG Chart Container */
 .chart-wrapper {
   position: relative;
   width: 100%;
-  height: 225px;
+  height: 220px;
+  user-select: none;
 }
 
 .chart-svg-container {
@@ -58,31 +138,82 @@
 .chart-grid-line {
   stroke: var(--border-default);
   stroke-dasharray: 4 4;
+  opacity: 0.7;
+}
+
+.chart-axis-line {
+  stroke: var(--border-default);
+  stroke-width: 1.5;
 }
 
 .chart-axis-text {
   font-size: 10px;
   fill: var(--text-muted);
   font-family: var(--font-sans);
+  transition: fill var(--transition-fast);
 }
 
+.chart-axis-text.active {
+  fill: var(--primary);
+  font-weight: 700;
+}
+
+/* Floating Tooltip Box */
 .chart-tooltip-box {
+  position: absolute;
   background-color: #0f172a;
   color: #ffffff;
-  padding: 4px 8px;
-  border-radius: 5px;
-  font-size: 10px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  line-height: 1.2;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3);
+  pointer-events: none;
+  z-index: 30;
+  white-space: nowrap;
+  transition: top 150ms cubic-bezier(0.4, 0, 0.2, 1), left 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chart-tooltip-box::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0 5px;
+  border-style: solid;
+  border-color: #0f172a transparent transparent transparent;
+}
+
+.chart-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .chart-tooltip-val {
+  font-weight: 800;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.chart-tooltip-badge {
+  font-size: 10px;
   font-weight: 700;
-  font-size: 11px;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.chart-tooltip-badge.positive {
+  background-color: rgba(34, 197, 94, 0.25);
+  color: #4ade80;
+}
+
+.chart-tooltip-badge.negative {
+  background-color: rgba(239, 68, 68, 0.25);
+  color: #f87171;
 }
 
 .chart-tooltip-date {
-  opacity: 0.8;
-  font-size: 9px;
+  font-size: 9.5px;
+  color: #94a3b8;
+  margin-top: 1px;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TrendingUp, BarChart2, PieChart, ChevronDown } from 'lucide-react';
+import { TrendingUp, BarChart2, PieChart, ChevronDown, Calendar } from 'lucide-react';
 import OrderOverviewChart from './OrderOverviewChart';
 import SalesOverviewChart from './SalesOverviewChart';
 import OrderStatusChart from './OrderStatusChart';
@@ -17,19 +17,10 @@ const MobileAnalyticsCard = () => {
   return (
     <div className="mobile-card-row">
       <div className="mobile-analytics-card">
-        <div className="mobile-analytics-header">
-          <h3 className="mobile-analytics-title">{titles[activeTab]}</h3>
-
-          <button className="chart-dropdown">
-            <span>This Week</span>
-            <ChevronDown size={13} />
-          </button>
-        </div>
-
-        <div className="mobile-chart-body">
-          {activeTab === 'orders' && <OrderOverviewChart hideHeader />}
-          {activeTab === 'sales' && <SalesOverviewChart hideHeader />}
-          {activeTab === 'status' && <OrderStatusChart hideHeader />}
+        <div className="mobile-chart-body" style={{ marginTop: '8px' }}>
+          {activeTab === 'orders' && <OrderOverviewChart />}
+          {activeTab === 'sales' && <SalesOverviewChart />}
+          {activeTab === 'status' && <OrderStatusChart />}
         </div>
       </div>
 

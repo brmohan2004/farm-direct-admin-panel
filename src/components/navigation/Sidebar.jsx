@@ -28,7 +28,7 @@ const navItems = [
   { label: 'Categories', path: '/product-management/categories', icon: Grid },
   { label: 'Orders', path: '/order-management/orders', icon: ShoppingCart, badge: 56 },
   { label: 'Consumers', path: '/consumer-management/consumers', icon: User },
-  { label: 'Payments', path: '/payment-management/payments', icon: CreditCard },
+  { label: 'Transactions', path: '/payment-management/payments', icon: CreditCard },
   { label: 'Farmer Payouts', path: '/farmer-payouts/payouts', icon: Wallet },
   { label: 'Notifications', path: '/notifications', icon: Bell },
   { label: 'Settings', path: '/settings', icon: Settings },

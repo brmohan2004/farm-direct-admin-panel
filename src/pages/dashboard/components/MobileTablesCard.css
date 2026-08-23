@@ -18,6 +18,15 @@
   gap: 12px;
 }
 
+.mobile-tables-card .orders-card,
+.mobile-tables-card .requests-card,
+.mobile-tables-card .products-card {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+
 .mobile-tables-header {
   display: flex;
   align-items: center;

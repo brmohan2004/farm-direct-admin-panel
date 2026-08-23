@@ -1,7 +1,38 @@
-.sales-chart-bar {
-  transition: all var(--transition-fast);
+.sales-bar-group {
+  transition: opacity 150ms ease;
+  cursor: pointer;
 }
 
-.sales-chart-bar:hover {
-  opacity: 0.85;
+.sales-bar-column {
+  transition: fill 150ms ease, opacity 150ms ease;
+}
+
+.sales-bar-column.dimmed {
+  opacity: 0.45;
+}
+
+.sales-bar-column.active {
+  opacity: 1;
+  filter: drop-shadow(0 4px 6px rgba(22, 163, 74, 0.3));
+}
+
+.chart-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: -4px;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
 }
