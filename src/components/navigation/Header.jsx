@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { Sprout, ArrowLeft } from 'lucide-react';
-import Search from './Search';
 import Notification from './Notification';
 import ProfileMenu from './ProfileMenu';
 import './Header.css';
@@ -35,6 +34,7 @@ const Header = () => {
   const isSettingsPage = location.pathname.includes('/settings');
   const isNotificationsPage = location.pathname.includes('/notifications');
   const showBackButton = isSettingsPage || isNotificationsPage;
+  const isHomePage = location.pathname === '/dashboard' || location.pathname === '/';
   const pageTitle = getPageTitle(location.pathname);
 
   const handleBack = () => {
@@ -59,29 +59,26 @@ const Header = () => {
             <span className="header-back-text">Back</span>
           </button>
         ) : (
-          <NavLink to="/dashboard" className="header-logo-wrap">
+          <NavLink to="/dashboard" className={`header-logo-wrap ${isHomePage ? 'is-home-logo' : 'is-other-logo'}`}>
             <Sprout className="header-logo-icon" />
-            <div className="header-logo-text desktop-only-brand">
+            <div className="header-logo-text">
               <span className="header-brand-title">Farm<span style={{ color: 'var(--primary)' }}>Direct</span></span>
               <span className="header-brand-sub">Admin Panel</span>
             </div>
           </NavLink>
         )}
 
-        {/* Respective Page Name displayed ONLY on Mobile Screen */}
-        <div className="header-mobile-page-name" title={pageTitle}>
-          {pageTitle}
-        </div>
-      </div>
-
-      <div className="header-center">
-        <Search />
+        {!isHomePage && (
+          <div className="header-mobile-page-name" title={pageTitle}>
+            {pageTitle}
+          </div>
+        )}
       </div>
 
       <div className="header-right">
         {!showBackButton && (
           <>
-            <Notification count={12} messageCount={5} />
+            <Notification count={12} />
             <ProfileMenu />
           </>
         )}

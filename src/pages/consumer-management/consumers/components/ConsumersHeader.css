@@ -51,17 +51,7 @@
 }
 
 @media (max-width: 640px) {
-  .consumers-header-text {
-    display: none !important;
-  }
-
   .consumers-header {
-    justify-content: flex-end;
-    margin-bottom: 0;
-  }
-
-  .consumers-add-btn {
-    padding: 8px 12px;
-    font-size: 0.8125rem;
+    display: none !important;
   }
 }

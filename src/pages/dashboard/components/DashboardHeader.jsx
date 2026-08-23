@@ -1,5 +1,4 @@
 import React from 'react';
-import { Calendar, ChevronDown } from 'lucide-react';
 import './DashboardHeader.css';
 
 const DashboardHeader = () => {
@@ -13,12 +12,6 @@ const DashboardHeader = () => {
           Here's what's happening with your store today.
         </p>
       </div>
-
-      <button className="date-filter-btn" aria-label="Select date range">
-        <Calendar className="calendar-icon" />
-        <span>12 May - 18 May, 2024</span>
-        <ChevronDown size={16} />
-      </button>
     </div>
   );
 };

@@ -10,9 +10,68 @@
   box-sizing: border-box;
 }
 
+/* Mobile Floating Circular Filter Button */
+.orders-floating-filter-fab {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .orders-page-container {
     padding: var(--space-sm, 14px);
     gap: var(--space-sm, 14px);
+  }
+
+  /* Floating Filter Circle Button above bottom nav bar */
+  .orders-floating-filter-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: calc(var(--bottom-nav-height, 65px) + 16px);
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--primary, #16a34a);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.4), 0 2px 6px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    z-index: 99;
+    will-change: transform, opacity;
+    transition: transform 300ms cubic-bezier(0.32, 0.72, 0, 1),
+                opacity 300ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .orders-floating-filter-fab:active {
+    transform: scale(0.92);
+  }
+
+  .orders-floating-filter-fab.fab-hidden {
+    transform: translateY(90px) scale(0.6);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .orders-floating-filter-fab.fab-visible {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .orders-floating-filter-fab.has-active {
+    background-color: #15803d;
+    box-shadow: 0 4px 18px rgba(21, 128, 61, 0.5);
+  }
+
+  .floating-filter-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
   }
 }

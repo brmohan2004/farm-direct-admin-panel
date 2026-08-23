@@ -71,11 +71,11 @@ const MobileBottomNav = () => {
           className={`floating-view-farmers-btn ${isScrolledDown ? 'hidden' : ''}`}
         >
           <div className="floating-farmers-icon-circle">
-            <Map size={18} />
+            <Users size={18} />
           </div>
           <div className="floating-farmers-text">
             <span className="floating-farmers-title">View Farmers</span>
-            <span className="floating-farmers-subtitle">Explore on map</span>
+            <span className="floating-farmers-subtitle">View active farmers</span>
           </div>
           <div className="floating-farmers-arrow-circle">
             <ChevronRight size={15} />

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ProductDetailsHeader,
   ProductDetailsBanner,
@@ -15,7 +14,7 @@ import './ProductDetailsSheet.css';
 
 /**
  * ProductDetailsSheet Component
- * Responsive Mobile Bottom Sheet & Desktop Popup Modal for Product Details
+ * Responsive Mobile Bottom Sheet & Desktop Popup Modal for Product Details with fluid gestures
  */
 const ProductDetailsSheet = ({
   product,
@@ -28,7 +27,64 @@ const ProductDetailsSheet = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
+  const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const lastScrollTop = useRef(0);
+  const bodyRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      setIsExpanded(false);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen || !product) return null;
+
+  const handleScroll = (e) => {
+    const currentScrollTop = e.target.scrollTop;
+    if (currentScrollTop > 15 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (currentScrollTop <= 2 && isExpanded && currentScrollTop < lastScrollTop.current) {
+      setIsExpanded(false);
+    }
+    lastScrollTop.current = currentScrollTop;
+  };
+
+  const handleWheel = (e) => {
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+    if (e.deltaY > 0 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (e.deltaY < 0 && bodyScrollTop <= 2 && isExpanded) {
+      setIsExpanded(false);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY.current;
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+
+    if (deltaY < -20 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (deltaY > 30 && bodyScrollTop <= 5) {
+      if (isExpanded) {
+        setIsExpanded(false);
+        touchStartY.current = touchY;
+      } else {
+        if (onClose) onClose();
+      }
+    }
+  };
 
   const handleEditClick = () => {
     setIsEditModalOpen(true);
@@ -52,33 +108,28 @@ const ProductDetailsSheet = ({
   return (
     <div className="product-details-sheet-backdrop" onClick={onClose}>
       <div
-        className="product-details-sheet-container"
+        className={`product-details-sheet-container ${isExpanded ? 'expanded' : ''}`}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onWheel={handleWheel}
       >
         {/* Sheet Drag Handle / Top Header Bar */}
-        <div className="sheet-top-drag-header">
+        <div
+          className="sheet-top-drag-header"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          role="button"
+          aria-label="Toggle sheet height"
+        >
           <div className="sheet-drag-indicator" />
-          <button
-            type="button"
-            className="sheet-close-btn"
-            onClick={onClose}
-            aria-label="Close Product Details"
-          >
-            <X size={20} />
-          </button>
         </div>
 
         {/* Scrollable Sheet Body */}
-        <div className="sheet-scrollable-body">
-          {/* Header */}
-          <ProductDetailsHeader
-            title="Product Details"
-            subtitle="View and manage product information"
-            onBack={onClose}
-            onEditProduct={handleEditClick}
-            onDeleteProduct={handleDeleteClick}
-          />
-
+        <div
+          className="sheet-scrollable-body"
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
           {/* Banner */}
           <ProductDetailsBanner
             product={product}
@@ -101,13 +152,14 @@ const ProductDetailsSheet = ({
               />
             </div>
           </div>
-
-          {/* Bottom Actions */}
-          <ProductDetailsActions
-            onEditProduct={handleEditClick}
-            onDeleteProduct={handleDeleteClick}
-          />
         </div>
+
+        {/* Fixed Bottom Actions */}
+        <ProductDetailsActions
+          onEditProduct={handleEditClick}
+          onDeleteProduct={handleDeleteClick}
+          onClose={onClose}
+        />
       </div>
 
       {/* Edit Product Modal */}

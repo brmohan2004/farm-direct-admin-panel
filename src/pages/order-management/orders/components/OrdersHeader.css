@@ -72,23 +72,7 @@
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
-  .orders-header-text {
-    display: none !important;
-  }
-
   .orders-header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 0;
-  }
-
-  .orders-header-actions {
-    margin-top: 0;
-  }
-
-  /* On mobile header, show only the main filter button in header, hide export & sort in header top */
-  .orders-header-actions .orders-action-btn--secondary {
-    display: none;
+    display: none !important;
   }
 }

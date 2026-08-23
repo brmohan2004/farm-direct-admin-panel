@@ -1,17 +1,17 @@
 import React from 'react';
-import { CreditCard, ChevronRight, Calendar, User } from 'lucide-react';
-import { StatusBadge, WalletIconAvatar } from '../../../../components/ui';
+import { CreditCard, ChevronRight, ArrowUpRight } from 'lucide-react';
+import { StatusBadge } from '../../../../components/ui';
 import './PaymentsCards.css';
 
 /**
  * PaymentsCards Component
- * Mobile-friendly stack of payment cards
+ * Minimalist mobile cards for Customer Payments
  */
 const PaymentsCards = ({ payments, onSelectPayment }) => {
   if (!payments || payments.length === 0) {
     return (
       <div className="payments-cards-empty">
-        <CreditCard size={32} className="empty-icon" />
+        <CreditCard size={28} className="empty-icon" />
         <p>No payments match your filters.</p>
       </div>
     );
@@ -25,47 +25,32 @@ const PaymentsCards = ({ payments, onSelectPayment }) => {
           className="payment-mobile-card"
           onClick={() => onSelectPayment(pay)}
         >
-          {/* Card Top Row */}
-          <div className="pay-card-header">
-            <div className="pay-card-header-left">
-              <WalletIconAvatar type="wallet" variant="success" size="md" />
-              <div className="pay-card-order-info">
-                <span className="pay-card-order-no">{pay.orderId}</span>
-                <span className="pay-card-txn">{pay.transactionId}</span>
+          {/* Top Row: Order ID + Customer Name on left | Amount + Status on right */}
+          <div className="pay-card-top">
+            <div className="pay-card-main-info">
+              <div className="pay-card-icon-badge">
+                <ArrowUpRight size={15} />
+              </div>
+              <div className="pay-card-titles">
+                <span className="pay-card-order-id">{pay.orderId}</span>
+                <span className="pay-card-customer">{pay.customerName}</span>
               </div>
             </div>
 
-            <div className="pay-card-header-right">
+            <div className="pay-card-amount-block">
               <span className="pay-card-amount">{pay.amount}</span>
               <StatusBadge status={pay.status} size="sm" />
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="pay-card-divider" />
-
-          {/* Card Details Grid */}
-          <div className="pay-card-details-grid">
-            <div className="pay-card-detail-item">
-              <User size={13} className="detail-icon" />
-              <span className="detail-text">{pay.customerName}</span>
+          {/* Bottom Meta Row */}
+          <div className="pay-card-bottom">
+            <div className="pay-card-meta">
+              <span className="pay-meta-method">{pay.paymentMethod}</span>
+              <span className="pay-meta-bullet">•</span>
+              <span className="pay-meta-date">{pay.date}</span>
             </div>
-
-            <div className="pay-card-detail-item">
-              <CreditCard size={13} className="detail-icon" />
-              <span className="detail-text">{pay.paymentMethod}</span>
-            </div>
-
-            <div className="pay-card-detail-item span-full">
-              <Calendar size={13} className="detail-icon" />
-              <span className="detail-text">{pay.date}</span>
-            </div>
-          </div>
-
-          {/* Footer view arrow */}
-          <div className="pay-card-footer">
-            <span className="view-link-text">Tap to view full details</span>
-            <ChevronRight size={16} className="arrow-icon" />
+            <ChevronRight size={16} className="pay-card-arrow" />
           </div>
         </div>
       ))}

@@ -33,6 +33,17 @@
   border-color: var(--primary, #16a34a);
 }
 
+.filter-modal-date-picker {
+  width: 100%;
+}
+
+.filter-modal-date-picker .date-range-picker-btn {
+  width: 100%;
+  justify-content: space-between;
+  height: 42px;
+  background-color: #ffffff;
+}
+
 .filter-radio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

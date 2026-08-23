@@ -1,33 +1,23 @@
 import React from 'react';
-import { Download } from 'lucide-react';
 import './FarmerRequestsHeader.css';
 
 /**
  * FarmerRequestsHeader Component
- * Renders page title, description, and export action button
+ * Renders page title and subtitle
  */
-const FarmerRequestsHeader = ({ onExport, totalRequests = 48 }) => {
+const FarmerRequestsHeader = ({
+  title = 'Farmer Requests',
+  subtitle = 'Review and manage new farmer registration requests.'
+}) => {
   return (
     <div className="farmer-requests-header">
       <div className="farmer-requests-header-text">
-        <h1 className="farmer-requests-title">Farmer Requests</h1>
-        <p className="farmer-requests-subtitle">
-          Review and manage new farmer registration requests.
-        </p>
-      </div>
-
-      <div className="farmer-requests-header-actions">
-        <button
-          type="button"
-          className="farmer-requests-export-btn"
-          onClick={onExport}
-        >
-          <Download size={16} />
-          <span>Export</span>
-        </button>
+        <h1 className="farmer-requests-title">{title}</h1>
+        <p className="farmer-requests-subtitle">{subtitle}</p>
       </div>
     </div>
   );
 };
 
 export default FarmerRequestsHeader;
+

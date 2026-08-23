@@ -1,2 +1,2 @@
-export { default as OrderDetailsSheet } from './OrderDetailsSheet';
-export { default } from './OrderDetailsSheet';
+export { default as OrderDetailsSheet } from '../orders/components/OrderDetailsSheet';
+export { default } from '../orders/components/OrderDetailsSheet';

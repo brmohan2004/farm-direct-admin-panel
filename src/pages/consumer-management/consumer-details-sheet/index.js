@@ -1,2 +1,2 @@
-export { default as ConsumerDetailsSheet } from './ConsumerDetailsSheet';
-export { default } from './ConsumerDetailsSheet';
+export { default as ConsumerDetailsSheet } from '../consumers/components/ConsumerDetailsSheet';
+export { default } from '../consumers/components/ConsumerDetailsSheet';

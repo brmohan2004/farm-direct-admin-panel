@@ -1,2 +1,2 @@
-export { default as PayoutDetailsSheet } from './PayoutDetailsSheet';
-export { default } from './PayoutDetailsSheet';
+export { default as PayoutDetailsSheet } from '../../payment-management/payments/components/PayoutDetailsSheet';
+export { default } from '../../payment-management/payments/components/PayoutDetailsSheet';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import './ProductDetailsActions.css';
 
-const ProductDetailsActions = ({ onEditProduct, onDeleteProduct }) => {
+const ProductDetailsActions = ({ onEditProduct, onDeleteProduct, onClose }) => {
   return (
     <div className="product-details-bottom-actions">
       <button
@@ -22,6 +22,16 @@ const ProductDetailsActions = ({ onEditProduct, onDeleteProduct }) => {
         <Trash2 size={16} />
         <span>Delete Product</span>
       </button>
+
+      {onClose && (
+        <button
+          type="button"
+          className="details-action-btn btn-close-gray"
+          onClick={onClose}
+        >
+          Close
+        </button>
+      )}
     </div>
   );
 };

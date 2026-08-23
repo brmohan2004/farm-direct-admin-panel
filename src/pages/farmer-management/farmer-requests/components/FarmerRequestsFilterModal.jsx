@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '../../../../components/ui/Modal/Modal';
+import DateRangePicker from '../../../../components/ui/DateRangePicker/DateRangePicker';
 import './FarmerRequestsFilterModal.css';
 
 /**
  * FarmerRequestsFilterModal Component
- * Modal to select locations, crop types, date range, and statuses
+ * Modal to select date range, locations, product category, and status
  */
 const FarmerRequestsFilterModal = ({
   isOpen = false,
@@ -16,12 +17,25 @@ const FarmerRequestsFilterModal = ({
   const [selectedLocation, setSelectedLocation] = useState(currentFilters.location || '');
   const [selectedCategory, setSelectedCategory] = useState(currentFilters.category || '');
   const [selectedStatus, setSelectedStatus] = useState(currentFilters.status || 'All');
+  const [selectedDateRange, setSelectedDateRange] = useState(
+    currentFilters.dateRange || '12 May - 18 May, 2024'
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedLocation(currentFilters.location || '');
+      setSelectedCategory(currentFilters.category || '');
+      setSelectedStatus(currentFilters.status || 'All');
+      setSelectedDateRange(currentFilters.dateRange || '12 May - 18 May, 2024');
+    }
+  }, [isOpen, currentFilters]);
 
   const handleApply = () => {
     onApplyFilters({
       location: selectedLocation,
       category: selectedCategory,
-      status: selectedStatus
+      status: selectedStatus,
+      dateRange: selectedDateRange
     });
     onClose();
   };
@@ -30,6 +44,7 @@ const FarmerRequestsFilterModal = ({
     setSelectedLocation('');
     setSelectedCategory('');
     setSelectedStatus('All');
+    setSelectedDateRange('All Time');
     onResetFilters();
     onClose();
   };
@@ -39,10 +54,21 @@ const FarmerRequestsFilterModal = ({
       isOpen={isOpen}
       onClose={onClose}
       title="Filter Farmer Requests"
-      subtitle="Refine requests by district, product category, or status"
+      subtitle="Refine requests by date range, district, category, or status"
       maxWidth="480px"
+      isPopup={true}
     >
       <div className="filter-modal-content">
+        {/* Date Range Selection Filter */}
+        <div className="filter-group">
+          <label className="filter-label">Date Range / Period</label>
+          <DateRangePicker
+            value={selectedDateRange}
+            onChange={(val) => setSelectedDateRange(val)}
+            className="filter-modal-date-picker"
+          />
+        </div>
+
         {/* District / Location Filter */}
         <div className="filter-group">
           <label className="filter-label">Location / District</label>
@@ -116,3 +142,4 @@ const FarmerRequestsFilterModal = ({
 };
 
 export default FarmerRequestsFilterModal;
+

@@ -16,16 +16,28 @@
 
 .order-sheet-container {
   background-color: #f9fafb;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
   box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
   width: 100%;
-  max-height: 92vh;
+  height: 55vh;
+  max-height: 55vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   animation: slideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  will-change: height, max-height, border-radius;
+  transition: height 350ms cubic-bezier(0.32, 0.72, 0, 1),
+              max-height 350ms cubic-bezier(0.32, 0.72, 0, 1),
+              border-radius 350ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.order-sheet-container.expanded {
+  height: 96vh;
+  max-height: 96vh;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 @keyframes slideUp {
@@ -67,21 +79,13 @@
   padding: 4px 0;
 }
 
-/* Header */
-.order-sheet-header {
+/* Header inside body */
+.order-sheet-header-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  padding: 0 16px 14px 16px;
-  background-color: #ffffff;
-  border-bottom: 1px solid var(--border-default, #e5e7eb);
-}
-
-.order-sheet-header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  margin-bottom: 2px;
 }
 
 .order-sheet-title {
@@ -497,6 +501,18 @@
   background-color: var(--primary, #16a34a);
   color: #ffffff;
   border: 1px solid var(--primary, #16a34a);
+}
+
+.order-sheet-action-btn--close {
+  background-color: #ffffff;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  flex: 0 0 auto;
+  padding: 12px 18px;
+}
+
+.order-sheet-action-btn--close:hover {
+  background-color: #f8fafc;
 }
 
 /* Desktop override: Sheet hidden on large screens */

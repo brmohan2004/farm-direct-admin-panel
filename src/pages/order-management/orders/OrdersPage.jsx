@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Filter } from 'lucide-react';
 import {
   OrdersHeader,
   OrdersFilterBar,
@@ -33,8 +34,9 @@ const OrdersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
-  // Mobile detection for Sheet vs Modal selection
+  // Mobile detection & FAB scroll hide
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 640);
+  const [isFabVisible, setIsFabVisible] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,6 +44,23 @@ const OrdersPage = () => {
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 40) {
+        setIsFabVisible(false);
+      } else {
+        setIsFabVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Calculate status counts for tab badges
@@ -213,6 +232,19 @@ const OrdersPage = () => {
         }}
         currentFilters={filters}
       />
+
+      {/* Floating Circular Filter FAB Button */}
+      <button
+        type="button"
+        className={`orders-floating-filter-fab ${isFabVisible ? 'fab-visible' : 'fab-hidden'} ${filters.status !== 'all' || filters.payment !== 'all' ? 'has-active' : ''}`}
+        onClick={() => setIsFilterModalOpen(true)}
+        aria-label="Filter Orders"
+      >
+        <Filter size={20} />
+        {(filters.status !== 'all' || filters.payment !== 'all') && (
+          <span className="floating-filter-badge" />
+        )}
+      </button>
     </div>
   );
 };

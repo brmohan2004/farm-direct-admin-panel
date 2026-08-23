@@ -16,15 +16,27 @@
 .pay-sheet-container {
   width: 100%;
   max-width: 600px;
-  max-height: 92vh;
+  height: 55vh;
+  max-height: 55vh;
   background-color: var(--bg-main, #ffffff);
-  border-top-left-radius: var(--radius-lg, 20px);
-  border-top-right-radius: var(--radius-lg, 20px);
+  border-top-left-radius: var(--radius-lg, 24px);
+  border-top-right-radius: var(--radius-lg, 24px);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-xl, 0 20px 25px rgba(0,0,0,0.1));
-  animation: slideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-xl, 0 20px 25px rgba(0,0,0,0.15));
+  animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  will-change: height, max-height, border-radius;
+  transition: height 350ms cubic-bezier(0.32, 0.72, 0, 1),
+              max-height 350ms cubic-bezier(0.32, 0.72, 0, 1),
+              border-radius 350ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.pay-sheet-container.expanded {
+  height: 96vh;
+  max-height: 96vh;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 @keyframes fadeIn {
@@ -40,7 +52,8 @@
 .pay-sheet-handle-bar {
   display: flex;
   justify-content: center;
-  padding: 10px 0 4px 0;
+  padding: 12px 0 8px 0;
+  cursor: pointer;
 }
 
 .pay-sheet-handle {
@@ -327,4 +340,23 @@
   border: 1px solid #b91c1c;
   border-radius: var(--radius-md, 8px);
   cursor: pointer;
+}
+
+.pay-sheet-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: var(--font-size-sm, 0.8125rem);
+  font-weight: 600;
+  color: #475569;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.pay-sheet-btn-close:hover {
+  background-color: #f8fafc;
 }

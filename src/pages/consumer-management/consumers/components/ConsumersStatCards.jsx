@@ -4,7 +4,7 @@ import './ConsumersStatCards.css';
 
 /**
  * ConsumersStatCards Component
- * Metric cards showing total, active, inactive, and new consumers
+ * Minimalist metric cards showing total, active, inactive, and new consumers
  */
 const ConsumersStatCards = ({
   stats = {
@@ -17,39 +17,39 @@ const ConsumersStatCards = ({
   const cards = [
     {
       id: 'total',
-      title: 'Total Consumers',
+      label: 'Total',
       value: stats.total.toLocaleString(),
-      subtext: '+8% this month',
-      subtextType: 'positive',
-      icon: <Users size={20} />,
-      iconTheme: 'green',
+      change: '+8%',
+      icon: <Users size={15} />,
+      color: '#16a34a',
+      bgLight: '#f0fdf4',
     },
     {
       id: 'active',
-      title: 'Active Consumers',
+      label: 'Active',
       value: stats.active.toLocaleString(),
-      subtext: '87.8% of total',
-      subtextType: 'neutral',
-      icon: <UserCheck size={20} />,
-      iconTheme: 'purple',
+      change: '87.8%',
+      icon: <UserCheck size={15} />,
+      color: '#2563eb',
+      bgLight: '#eff6ff',
     },
     {
       id: 'inactive',
-      title: 'Inactive Consumers',
+      label: 'Inactive',
       value: stats.inactive.toLocaleString(),
-      subtext: '12.2% of total',
-      subtextType: 'neutral',
-      icon: <UserX size={20} />,
-      iconTheme: 'orange',
+      change: '12.2%',
+      icon: <UserX size={15} />,
+      color: '#d97706',
+      bgLight: '#fff7ed',
     },
     {
       id: 'new',
-      title: 'New This Month',
+      label: 'New',
       value: stats.newThisMonth.toLocaleString(),
-      subtext: '+18.2% vs last month',
-      subtextType: 'positive',
-      icon: <UserPlus size={20} />,
-      iconTheme: 'blue',
+      change: '+18%',
+      icon: <UserPlus size={15} />,
+      color: '#9333ea',
+      bgLight: '#faf5ff',
     },
   ];
 
@@ -57,16 +57,16 @@ const ConsumersStatCards = ({
     <div className="consumers-stat-grid">
       {cards.map((card) => (
         <div key={card.id} className="consumers-stat-card">
-          <div className="consumers-stat-top">
-            <div className={`consumers-stat-icon-wrap consumers-stat-icon-wrap--${card.iconTheme}`}>
+          <div className="stat-card-header">
+            <div className="stat-card-icon-pill" style={{ color: card.color, backgroundColor: card.bgLight }}>
               {card.icon}
             </div>
+            <span className="stat-card-label">{card.label}</span>
           </div>
-          <div className="consumers-stat-info">
-            <span className="consumers-stat-title">{card.title}</span>
-            <span className="consumers-stat-value">{card.value}</span>
-            <span className={`consumers-stat-subtext consumers-stat-subtext--${card.subtextType}`}>
-              {card.subtext}
+          <div className="stat-card-body">
+            <span className="stat-card-val">{card.value}</span>
+            <span className="stat-card-badge" style={{ color: card.color, backgroundColor: card.bgLight }}>
+              {card.change}
             </span>
           </div>
         </div>

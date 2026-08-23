@@ -84,18 +84,10 @@
   max-width: 200px;
 }
 
-.header-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  max-width: 460px;
-  margin: 0 16px;
-}
-
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 6px;
 }
 
 @media (max-width: 1024px) {
@@ -110,13 +102,16 @@
     height: 56px;
   }
 
-  .header-center {
-    display: none;
+  .header-logo-wrap.is-other-logo {
+    display: none !important;
   }
 
-  .desktop-only-action,
-  .desktop-only-brand {
-    display: none !important;
+  .header-logo-wrap.is-home-logo {
+    display: flex !important;
+  }
+
+  .header-logo-wrap.is-home-logo .header-brand-sub {
+    display: none;
   }
 
   .header-mobile-page-name {

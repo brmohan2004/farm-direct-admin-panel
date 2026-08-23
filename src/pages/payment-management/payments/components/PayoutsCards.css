@@ -1,93 +1,145 @@
 .payouts-cards-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
 .payout-mobile-card {
-  background-color: var(--bg-card, #ffffff);
+  background-color: #ffffff;
   border: 1px solid var(--border-default, #e5e7eb);
-  border-radius: var(--radius-md, 12px);
-  padding: 14px;
-  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   transition: all var(--transition-fast, 150ms ease);
 }
 
+.payout-mobile-card:hover,
 .payout-mobile-card:active {
-  background-color: var(--bg-hover, #f9fafb);
-  transform: scale(0.99);
+  border-color: var(--primary-border, #bbf7d0);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08);
+  background-color: #fafdfb;
 }
 
-.pwt-card-header {
+/* Top Row */
+.pwt-card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
 }
 
-.pwt-card-header-left {
+.pwt-card-main-info {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
-.pwt-card-id-info {
+.pwt-card-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #f0fdf4;
+  border: 1px solid #dcfce7;
+  color: var(--primary, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pwt-card-titles {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .pwt-card-id {
-  font-size: var(--font-size-base, 0.95rem);
+  font-family: var(--font-heading, sans-serif);
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--text-primary, #111827);
+  line-height: 1.2;
 }
 
-.pwt-card-date {
-  font-size: var(--font-size-xs, 0.75rem);
-  color: var(--text-muted, #9ca3af);
+.pwt-card-farmer {
+  font-size: 0.78125rem;
+  color: var(--text-secondary, #4b5563);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.pwt-card-header-right {
+.pwt-card-amount-block {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
+  gap: 3px;
+  flex-shrink: 0;
 }
 
 .pwt-card-amount {
-  font-size: var(--font-size-base, 1rem);
+  font-family: var(--font-heading, sans-serif);
+  font-size: 0.9375rem;
   font-weight: 800;
   color: var(--text-primary, #111827);
+  letter-spacing: -0.2px;
 }
 
-.pwt-card-divider {
-  height: 1px;
-  background-color: var(--border-light, #f3f4f6);
-  margin: 10px 0;
-}
-
-.pwt-card-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-
-.pwt-card-detail-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pwt-card-footer {
+/* Bottom Meta Row */
+.pwt-card-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  gap: 8px;
   padding-top: 8px;
-  border-top: 1px dashed var(--border-default, #e5e7eb);
+  border-top: 1px solid #f3f4f6;
+}
+
+.pwt-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted, #6b7280);
+  min-width: 0;
+}
+
+.pwt-meta-bank {
+  font-weight: 500;
+  color: var(--text-secondary, #374151);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pwt-meta-bullet {
+  color: #d1d5db;
+  font-size: 0.7rem;
+}
+
+.pwt-meta-date {
+  color: var(--text-muted, #6b7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pwt-card-arrow {
+  color: var(--text-muted, #9ca3af);
+  flex-shrink: 0;
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.payout-mobile-card:hover .pwt-card-arrow {
+  color: var(--primary, #16a34a);
+  transform: translateX(2px);
 }
 
 .payouts-cards-empty {
@@ -96,5 +148,5 @@
   color: var(--text-secondary, #4b5563);
   background-color: var(--bg-card, #ffffff);
   border: 1px solid var(--border-default, #e5e7eb);
-  border-radius: var(--radius-md, 12px);
+  border-radius: 12px;
 }

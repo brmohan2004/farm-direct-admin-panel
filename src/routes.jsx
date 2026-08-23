@@ -33,10 +33,12 @@ import {
   NotificationsPage,
   SettingsPage
 } from './pages';
+import ScrollToTop from './components/common/ScrollToTop';
 
 export const AppRoutes = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Auth Routes */}
         <Route element={<AuthLayout />}>

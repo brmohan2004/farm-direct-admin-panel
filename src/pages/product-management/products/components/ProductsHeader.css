@@ -61,13 +61,10 @@
   }
 
   .products-header {
-    justify-content: flex-end;
-    margin-bottom: 0;
+    display: none !important;
   }
 
   .add-stock-btn {
-    padding: 8px 12px;
-    font-size: 0.8125rem;
-    border-radius: 8px;
+    display: none !important;
   }
 }

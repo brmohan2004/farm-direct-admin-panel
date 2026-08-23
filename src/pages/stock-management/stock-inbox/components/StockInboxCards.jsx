@@ -47,8 +47,12 @@ const StockInboxCards = ({
   return (
     <div className="stock-cards-mobile-list">
       {requests.map((item) => (
-        <div key={item.id} className="stock-mobile-card">
-          {/* Card Header: Farmer details + Status badge + Menu */}
+        <div
+          key={item.id}
+          className="stock-mobile-card"
+          onClick={() => onViewDetails && onViewDetails(item)}
+        >
+          {/* Top Header: Farmer info + Request ID & Status Badge */}
           <div className="stock-mobile-card-header">
             <div className="farmer-profile-row">
               <img
@@ -59,22 +63,26 @@ const StockInboxCards = ({
               <div className="farmer-meta">
                 <span className="farmer-name">{item.farmerName}</span>
                 <div className="farmer-location-row">
-                  <MapPin size={13} className="location-pin-icon" />
+                  <MapPin size={11} className="location-pin-icon" />
                   <span>{item.location}</span>
                 </div>
               </div>
             </div>
 
             <div className="header-actions-right">
+              <span className="stock-req-id-pill">{item.requestId}</span>
               <StatusBadge status={item.status} showDot={false} size="sm" />
-              <div className="mobile-dropdown-wrapper">
+              <div
+                className="mobile-dropdown-wrapper"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <button
                   type="button"
                   className="mobile-menu-btn"
                   onClick={(e) => toggleMenu(item.id, e)}
                   aria-label="Options"
                 >
-                  <MoreVertical size={18} />
+                  <MoreVertical size={16} />
                 </button>
 
                 {activeMenuId === item.id && (
@@ -82,12 +90,13 @@ const StockInboxCards = ({
                     <button
                       type="button"
                       className="dropdown-item"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setActiveMenuId(null);
                         onViewDetails && onViewDetails(item);
                       }}
                     >
-                      <Eye size={15} />
+                      <Eye size={14} />
                       <span>View Details</span>
                     </button>
 
@@ -95,12 +104,13 @@ const StockInboxCards = ({
                       <button
                         type="button"
                         className="dropdown-item approve-item"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setActiveMenuId(null);
                           onApprove && onApprove(item);
                         }}
                       >
-                        <CheckCircle size={15} />
+                        <CheckCircle size={14} />
                         <span>Approve</span>
                       </button>
                     )}
@@ -109,12 +119,13 @@ const StockInboxCards = ({
                       <button
                         type="button"
                         className="dropdown-item reject-item"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setActiveMenuId(null);
                           onReject && onReject(item);
                         }}
                       >
-                        <XCircle size={15} />
+                        <XCircle size={14} />
                         <span>Reject</span>
                       </button>
                     )}
@@ -124,12 +135,7 @@ const StockInboxCards = ({
             </div>
           </div>
 
-          {/* Sub Header Date / Time */}
-          <div className="stock-mobile-date-sub">
-            <span>{item.requestedDate} {item.requestedTime}</span>
-          </div>
-
-          {/* Middle Product Container */}
+          {/* Middle Inner Product Box */}
           <div className="stock-mobile-product-box">
             <img
               src={item.productImage}
@@ -138,38 +144,21 @@ const StockInboxCards = ({
             />
             <div className="product-mobile-meta">
               <span className="product-title">{item.productName}</span>
-              <span className="product-cat">Category: <strong>{item.category}</strong></span>
-              <span className="product-qty">Quantity: <strong>{item.quantity}</strong></span>
+              <div className="product-sub-tags">
+                <span className="product-cat-tag">{item.category}</span>
+                <span className="product-qty-tag">{item.quantity}</span>
+              </div>
             </div>
 
             <div className="product-mobile-price">
-              <span className="price-label">Price</span>
-              <span className="price-amount">₹{item.pricePerKg} <small>/ kg</small></span>
+              <span className="price-amount">₹{item.pricePerKg}</span>
+              <span className="price-unit">/ kg</span>
             </div>
           </div>
 
-          {/* Card Footer: Request ID + Requested On + View Details button */}
+          {/* Bottom Card Footer: Date info line */}
           <div className="stock-mobile-card-footer">
-            <div className="footer-info-col">
-              <div className="request-id-row">
-                <span className="info-label">Request ID</span>
-                <span className="info-val-green">{item.requestId}</span>
-              </div>
-              <div className="requested-on-row">
-                <span className="info-label">Requested On</span>
-                <span className="info-val">{item.requestedDate}, {item.requestedTime}</span>
-              </div>
-            </div>
-
-            <div className="footer-action-col">
-              <button
-                type="button"
-                className="mobile-view-details-btn"
-                onClick={() => onViewDetails && onViewDetails(item)}
-              >
-                View Details
-              </button>
-            </div>
+            <span className="requested-date-txt">Requested {item.requestedDate}, {item.requestedTime}</span>
           </div>
         </div>
       ))}

@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 
 // Asset Images from src/assets
 import vegMixImg from '../../../assets/cat_vegetables.png';
@@ -29,6 +30,7 @@ import {
 import { ProductDetailsSheet } from '../product-details-sheet';
 
 // Global UI Components
+import Modal from '../../../components/ui/Modal/Modal';
 import Pagination from '../../../components/ui/Pagination/Pagination';
 import './ProductsPage.css';
 
@@ -271,6 +273,23 @@ const ProductsPage = () => {
   const [products, setProducts] = useState(INITIAL_PRODUCTS);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isFabVisible, setIsFabVisible] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 40) {
+        setIsFabVisible(false);
+      } else {
+        setIsFabVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Modal & Sheet States
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -278,6 +297,8 @@ const ProductsPage = () => {
   const [isDetailsSheetOpen, setIsDetailsSheetOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [modalMode, setModalMode] = useState('view');
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [deleteTargetProduct, setDeleteTargetProduct] = useState(null);
 
   // Filter Criteria
   const [filterCriteria, setFilterCriteria] = useState({
@@ -399,8 +420,16 @@ const ProductsPage = () => {
   };
 
   const handleDeleteProduct = (item) => {
-    setProducts((prev) => prev.filter((p) => p.id !== item.id));
-    showToast(`Product "${item.name}" removed from inventory.`);
+    setDeleteTargetProduct(item);
+    setIsDeleteConfirmOpen(true);
+  };
+
+  const confirmDeleteProduct = () => {
+    if (!deleteTargetProduct) return;
+    setProducts((prev) => prev.filter((p) => p.id !== deleteTargetProduct.id));
+    showToast(`Product "${deleteTargetProduct.name}" removed from inventory.`);
+    setIsDeleteConfirmOpen(false);
+    setDeleteTargetProduct(null);
   };
 
   const handleSaveProduct = (updatedItem) => {
@@ -518,7 +547,12 @@ const ProductsPage = () => {
           setIsDetailsSheetOpen(false);
           setSelectedProduct(null);
         }}
-        onEditProduct={handleSaveProduct}
+        onEditProduct={(itemToEdit) => {
+          setIsDetailsSheetOpen(false);
+          setSelectedProduct(itemToEdit || selectedProduct);
+          setModalMode('edit');
+          setIsDetailsModalOpen(true);
+        }}
         onDeleteProduct={handleDeleteProduct}
       />
 
@@ -533,6 +567,56 @@ const ProductsPage = () => {
         }}
         onSaveProduct={handleSaveProduct}
       />
+
+      {/* 10. Mobile Floating Add Stock FAB */}
+      <button
+        type="button"
+        className={`products-floating-add-fab ${isFabVisible ? 'fab-visible' : 'fab-hidden'}`}
+        onClick={handleAddStock}
+        aria-label="Add Stock"
+      >
+        <Plus size={22} />
+      </button>
+
+      {/* 11. Delete Warning Popup Modal */}
+      {isDeleteConfirmOpen && (
+        <Modal
+          isOpen={isDeleteConfirmOpen}
+          onClose={() => {
+            setIsDeleteConfirmOpen(false);
+            setDeleteTargetProduct(null);
+          }}
+          isPopup={true}
+          title="Delete Inventory Item"
+          subtitle={`Are you sure you want to delete "${deleteTargetProduct?.name}"?`}
+          maxWidth="440px"
+        >
+          <div className="delete-modal-content">
+            <p className="delete-modal-warning">
+              Warning: This action will permanently remove <strong>{deleteTargetProduct?.name}</strong> from all active inventory views and stock records.
+            </p>
+            <div className="delete-modal-actions">
+              <button
+                type="button"
+                className="delete-cancel-btn"
+                onClick={() => {
+                  setIsDeleteConfirmOpen(false);
+                  setDeleteTargetProduct(null);
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="delete-confirm-btn"
+                onClick={confirmDeleteProduct}
+              >
+                Confirm Delete
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

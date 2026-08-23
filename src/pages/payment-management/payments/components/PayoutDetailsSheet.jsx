@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
-  ArrowLeft,
   User,
   Mail,
   Phone,
@@ -17,12 +16,18 @@ import './PayoutDetailsSheet.css';
 
 /**
  * PayoutDetailsSheet Component
- * Mobile Bottom Sheet for Farmer Payout Details matching Image 4
+ * Mobile Bottom Sheet for Farmer Payout Details with expandable drag/scroll behavior
  */
 const PayoutDetailsSheet = ({ isOpen = false, onClose, payout = null }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const lastScrollTop = useRef(0);
+  const bodyRef = useRef(null);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsExpanded(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -33,33 +38,86 @@ const PayoutDetailsSheet = ({ isOpen = false, onClose, payout = null }) => {
 
   if (!isOpen || !payout) return null;
 
+  const handleScroll = (e) => {
+    const currentScrollTop = e.target.scrollTop;
+
+    // Scrolling down into content -> Expand to full screen
+    if (currentScrollTop > 15 && !isExpanded) {
+      setIsExpanded(true);
+    }
+    // Scrolling upward back to the top -> Shrink back to partial screen
+    else if (currentScrollTop <= 2 && isExpanded && currentScrollTop < lastScrollTop.current) {
+      setIsExpanded(false);
+    }
+
+    lastScrollTop.current = currentScrollTop;
+  };
+
+  const handleWheel = (e) => {
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+    // Mouse wheel scrolling DOWN into content
+    if (e.deltaY > 0 && !isExpanded) {
+      setIsExpanded(true);
+    }
+    // Mouse wheel scrolling UP at top of content
+    else if (e.deltaY < 0 && bodyScrollTop <= 2 && isExpanded) {
+      setIsExpanded(false);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY.current;
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+
+    // Swiping UP -> Scrolling down into content
+    if (deltaY < -20 && !isExpanded) {
+      setIsExpanded(true);
+    }
+    // Swiping DOWN -> Scrolling up / pulling sheet down
+    else if (deltaY > 30 && bodyScrollTop <= 5) {
+      if (isExpanded) {
+        setIsExpanded(false);
+        touchStartY.current = touchY;
+      } else {
+        onClose();
+      }
+    }
+  };
+
+  const handleHandleClick = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <div className="pwt-sheet-backdrop" onClick={onClose}>
-      <div className="pwt-sheet-container" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`pwt-sheet-container ${isExpanded ? 'expanded' : ''}`}
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onWheel={handleWheel}
+      >
         {/* Top Handle Bar */}
-        <div className="pwt-sheet-handle-bar">
+        <div
+          className="pwt-sheet-handle-bar"
+          onClick={handleHandleClick}
+          role="button"
+          aria-label="Toggle sheet height"
+        >
           <div className="pwt-sheet-handle" />
         </div>
 
-        {/* Back Navigation Bar */}
-        <div className="pwt-sheet-nav-bar">
-          <button className="pwt-sheet-back-btn" onClick={onClose}>
-            <ArrowLeft size={18} />
-            <span>Back to Payouts</span>
-          </button>
-        </div>
-
         {/* Sheet Content Scroll Body */}
-        <div className="pwt-sheet-body">
-          {/* Header Title with Badge */}
-          <div className="pwt-sheet-header-row">
-            <div>
-              <h2 className="pwt-sheet-title">Payout Details</h2>
-              <p className="pwt-sheet-subtitle">View detailed information about this payout.</p>
-            </div>
-            <StatusBadge status={payout.status} size="sm" />
-          </div>
-
+        <div
+          className="pwt-sheet-body"
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
           {/* Card 1: Payout Top Banner */}
           <div className="pwt-sheet-card pwt-sheet-top-card">
             <div className="pwt-top-left">
@@ -219,11 +277,14 @@ const PayoutDetailsSheet = ({ isOpen = false, onClose, payout = null }) => {
           </div>
         </div>
 
-        {/* Footer Download Receipt Button */}
+        {/* Footer Actions */}
         <div className="pwt-sheet-footer">
           <button className="pwt-btn-download">
             <Download size={16} />
             <span>Download Receipt</span>
+          </button>
+          <button type="button" className="pwt-btn-close" onClick={onClose}>
+            Close
           </button>
         </div>
       </div>

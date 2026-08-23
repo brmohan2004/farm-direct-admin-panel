@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../components/navigation/Header';
 import Sidebar from '../components/navigation/Sidebar';
@@ -6,6 +6,16 @@ import MobileBottomNav from '../components/navigation/MobileBottomNav';
 
 const AdminLayout = () => {
   const location = useLocation();
+  const mainContentRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTop = 0;
+    }
+  }, [location.pathname]);
 
   // Check if current page is Farmer Details to hide mobile header nav
   const isFarmerDetailsPage =
@@ -22,7 +32,7 @@ const AdminLayout = () => {
       <Header />
       <div className="admin-body">
         <Sidebar />
-        <main className="admin-content">
+        <main className="admin-content" ref={mainContentRef}>
           <Outlet />
         </main>
       </div>

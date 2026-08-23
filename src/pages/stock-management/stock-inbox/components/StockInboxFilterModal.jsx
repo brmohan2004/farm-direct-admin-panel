@@ -42,6 +42,7 @@ const StockInboxFilterModal = ({
       title="Filter Stock Requests"
       subtitle="Refine incoming requests by category, location, status or price"
       maxWidth="480px"
+      isPopup={true}
     >
       <div className="filter-modal-content">
         {/* Status Filter */}

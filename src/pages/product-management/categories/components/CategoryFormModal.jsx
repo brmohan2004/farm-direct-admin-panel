@@ -57,6 +57,7 @@ const CategoryFormModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      isPopup={true}
       title={isEditing ? 'Edit Category' : 'Add New Category'}
       subtitle={isEditing ? 'Update category details' : 'Create a new product category for your catalog'}
       maxWidth="480px"

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   X,
@@ -23,11 +23,16 @@ import './FarmerMapDetailsSheet.css';
  */
 const FarmerMapDetailsSheet = ({ isOpen, onClose, farmer }) => {
   const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const lastScrollTop = useRef(0);
+  const bodyRef = useRef(null);
 
   // Prevent background scrolling when sheet is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsExpanded(false);
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -37,6 +42,46 @@ const FarmerMapDetailsSheet = ({ isOpen, onClose, farmer }) => {
   }, [isOpen]);
 
   if (!isOpen || !farmer) return null;
+
+  const handleScroll = (e) => {
+    const currentScrollTop = e.target.scrollTop;
+    if (currentScrollTop > 15 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (currentScrollTop <= 2 && isExpanded && currentScrollTop < lastScrollTop.current) {
+      setIsExpanded(false);
+    }
+    lastScrollTop.current = currentScrollTop;
+  };
+
+  const handleWheel = (e) => {
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+    if (e.deltaY > 0 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (e.deltaY < 0 && bodyScrollTop <= 2 && isExpanded) {
+      setIsExpanded(false);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY.current;
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+
+    if (deltaY < -20 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (deltaY > 30 && bodyScrollTop <= 5) {
+      if (isExpanded) {
+        setIsExpanded(false);
+        touchStartY.current = touchY;
+      } else {
+        if (onClose) onClose();
+      }
+    }
+  };
 
   const handleViewFullProfile = () => {
     onClose();
@@ -49,30 +94,29 @@ const FarmerMapDetailsSheet = ({ isOpen, onClose, farmer }) => {
       <div className="farmer-map-sheet-backdrop" onClick={onClose} />
 
       {/* Sheet Container */}
-      <div className="farmer-map-sheet-container" role="dialog" aria-modal="true">
+      <div
+        className={`farmer-map-sheet-container ${isExpanded ? 'expanded' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onWheel={handleWheel}
+      >
         {/* Drag handle for mobile */}
-        <div className="farmer-map-sheet-drag-handle" />
-
-        {/* Sheet Header */}
-        <div className="farmer-map-sheet-header">
-          <div className="farmer-map-sheet-title-group">
-            <span className="farmer-map-sheet-badge">
-              <CheckCircle2 size={13} /> Verified Approved Farmer
-            </span>
-            <h2 className="farmer-map-sheet-title">Farmer Land Profile</h2>
-          </div>
-          <button
-            type="button"
-            className="farmer-map-sheet-close-btn"
-            onClick={onClose}
-            aria-label="Close sheet"
-          >
-            <X size={18} />
-          </button>
-        </div>
+        <div
+          className="farmer-map-sheet-drag-handle"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          role="button"
+          aria-label="Toggle sheet height"
+        />
 
         {/* Sheet Content Body */}
-        <div className="farmer-map-sheet-body">
+        <div
+          className="farmer-map-sheet-body"
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
           {/* Main Farmer Profile Card */}
           <div className="farmer-map-profile-card">
             <div className="farmer-map-avatar-wrapper">
@@ -194,6 +238,13 @@ const FarmerMapDetailsSheet = ({ isOpen, onClose, farmer }) => {
             onClick={handleViewFullProfile}
           >
             View Full Profile <ExternalLink size={15} />
+          </button>
+          <button
+            type="button"
+            className="farmer-map-btn-close"
+            onClick={onClose}
+          >
+            Close
           </button>
         </div>
       </div>

@@ -19,6 +19,7 @@ const CategoryDeleteModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      isPopup={true}
       title="Delete Category"
       maxWidth="420px"
     >

@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Phone, MapPin, Sprout, Calendar, MoreVertical, Check, Eye, Loader2, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { Phone, MapPin, Sprout, Calendar, ChevronRight, Loader2, CheckCircle2 } from 'lucide-react';
+import StatusBadge from '../../../../components/ui/StatusBadge/StatusBadge';
 import './FarmerRequestsCards.css';
 
 /**
@@ -19,8 +20,7 @@ const parseDateTime = (fullDateStr = '') => {
 
 /**
  * FarmerRequestsCards Component
- * Renders stacked card view tailored specifically for Mobile screens with infinite scrolling
- * Matching exact reference image design layout
+ * Minimalist responsive stacked cards for mobile view with infinite scrolling
  */
 const FarmerRequestsCards = ({
   requests = [],
@@ -28,11 +28,8 @@ const FarmerRequestsCards = ({
   hasMore = false,
   isLoading = false,
   onLoadMore,
-  onViewDetails,
-  onApprove,
-  onReject
+  onViewDetails
 }) => {
-  const [activeMenuId, setActiveMenuId] = useState(null);
   const sentinelRef = useRef(null);
 
   // Setup IntersectionObserver for Infinite Scrolling on Mobile
@@ -75,9 +72,16 @@ const FarmerRequestsCards = ({
       {requests.map((farmer) => {
         const { date: datePart, time: timePart } = parseDateTime(farmer.date);
         const statusLower = (farmer.status || '').toLowerCase();
+        const isPending = farmer.status === 'Pending';
 
         return (
-          <div key={farmer.id} className="farmer-request-card">
+          <div
+            key={farmer.id}
+            className={`farmer-request-card farmer-card-${statusLower}`}
+            onClick={() => onViewDetails && onViewDetails(farmer)}
+            role="button"
+            tabIndex={0}
+          >
             {/* Top Info Section */}
             <div className="card-top-content">
               {/* Green Ring Avatar Container */}
@@ -100,40 +104,28 @@ const FarmerRequestsCards = ({
                 <h3 className="card-farmer-name">{farmer.name}</h3>
 
                 <div className="info-detail-row">
-                  <Phone size={14} className="icon-slate" />
+                  <Phone size={13} className="icon-slate" />
                   <span>{farmer.phone}</span>
                 </div>
 
                 <div className="info-detail-row">
-                  <MapPin size={14} className="icon-slate" />
+                  <MapPin size={13} className="icon-slate" />
                   <span>{farmer.location}</span>
                 </div>
 
                 <div className="info-detail-row">
-                  <Sprout size={14} className="icon-green" />
+                  <Sprout size={13} className="icon-green" />
                   <span>{farmer.products}</span>
                 </div>
               </div>
 
-              {/* Right Column: Status Badge, Options Button & Date Block */}
+              {/* Right Column: Status Badge & Date Block */}
               <div className="card-right-info">
-                <div className="card-header-actions">
-                  <span className={`status-pill status-pill--${statusLower}`}>
-                    {farmer.status}
-                  </span>
-                  <button
-                    type="button"
-                    className="card-more-btn"
-                    onClick={() => setActiveMenuId(activeMenuId === farmer.id ? null : farmer.id)}
-                    aria-label="Options"
-                  >
-                    <MoreVertical size={16} />
-                  </button>
-                </div>
+                <StatusBadge status={farmer.status} size="sm" />
 
                 <div className="card-date-block">
                   <div className="date-row">
-                    <Calendar size={13} className="icon-slate" />
+                    <Calendar size={12} className="icon-slate" />
                     <span>{datePart}</span>
                   </div>
                   {timePart && <span className="time-subtext">{timePart}</span>}
@@ -141,72 +133,23 @@ const FarmerRequestsCards = ({
               </div>
             </div>
 
-            {/* Popover Action Menu */}
-            {activeMenuId === farmer.id && (
-              <div className="card-dropdown-menu">
-                <button
-                  type="button"
-                  className="card-dropdown-item"
-                  onClick={() => {
-                    setActiveMenuId(null);
-                    onViewDetails(farmer);
-                  }}
-                >
-                  <Eye size={14} /> View Details & Documents
-                </button>
-                {farmer.status === 'Pending' && (
-                  <button
-                    type="button"
-                    className="card-dropdown-item text-green"
-                    onClick={() => {
-                      setActiveMenuId(null);
-                      onApprove(farmer);
-                    }}
-                  >
-                    <Check size={14} /> Quick Approve
-                  </button>
-                )}
-              </div>
-            )}
-
             {/* Dashed Separator Line */}
             <div className="card-dashed-line"></div>
 
-            {/* Bottom Action Buttons */}
-            <div className="card-bottom-actions">
-              <button
-                type="button"
-                className="btn-card-outline"
-                onClick={() => onViewDetails(farmer)}
+            {/* Bottom Minimalist Action Note Bar */}
+            <div className="card-bottom-note-bar">
+              <span
+                className={`card-note-text ${
+                  statusLower === 'pending'
+                    ? 'note-pending'
+                    : statusLower === 'rejected'
+                    ? 'note-rejected'
+                    : 'note-default'
+                }`}
               >
-                View Details
-              </button>
-
-              {farmer.status === 'Pending' ? (
-                <button
-                  type="button"
-                  className="btn-card-solid"
-                  onClick={() => onApprove(farmer)}
-                >
-                  Approve
-                </button>
-              ) : farmer.status === 'Approved' ? (
-                <button
-                  type="button"
-                  className="btn-card-outline"
-                  onClick={() => onViewDetails(farmer)}
-                >
-                  View Farmer
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn-card-outline"
-                  onClick={() => onViewDetails(farmer)}
-                >
-                  Re-evaluate
-                </button>
-              )}
+                {isPending ? 'Tap to see and approve' : 'Click and view the details'}
+              </span>
+              <ChevronRight size={15} className="card-note-chevron" />
             </div>
           </div>
         );
@@ -233,3 +176,4 @@ const FarmerRequestsCards = ({
 };
 
 export default FarmerRequestsCards;
+

@@ -61,13 +61,10 @@
   }
 
   .categories-header {
-    justify-content: flex-end;
+    display: none !important;
   }
-}
 
-@media (max-width: 480px) {
   .categories-add-btn {
-    padding: 8px 14px;
-    font-size: 0.8125rem;
+    display: none !important;
   }
 }

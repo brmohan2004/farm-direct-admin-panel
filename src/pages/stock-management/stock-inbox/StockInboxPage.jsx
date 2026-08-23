@@ -22,7 +22,6 @@ import peppersImg from '../../../assets/prod_peppers.png';
 // Modular Page Components
 import {
   StockInboxHeader,
-  StockInboxStatCards,
   StockInboxFilterBar,
   StockInboxTable,
   StockInboxCards,
@@ -558,13 +557,6 @@ const StockInboxPage = () => {
       <StockInboxHeader
         title="Stock Inbox"
         subtitle="Review and manage incoming stock from farmers."
-      />
-
-      {/* 2. Top Summary Stat Cards / Tab Selectors */}
-      <StockInboxStatCards
-        activeTab={activeTab}
-        onTabChange={(tab) => setActiveTab(tab)}
-        counts={counts}
       />
 
       {/* 3. Controls & Filter Bar */}

@@ -12,6 +12,7 @@ const Modal = ({
   subtitle = '',
   children,
   maxWidth = '600px',
+  isPopup = false,
   className = ''
 }) => {
   useEffect(() => {
@@ -35,9 +36,9 @@ const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className={`modal-overlay ${isPopup ? 'modal-overlay-popup' : ''}`} onClick={onClose}>
       <div
-        className={`modal-container ${className}`}
+        className={`modal-container ${isPopup ? 'modal-container-popup' : ''} ${className}`}
         style={{ maxWidth }}
         onClick={(e) => e.stopPropagation()}
       >

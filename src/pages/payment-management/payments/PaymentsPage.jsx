@@ -9,9 +9,9 @@ import {
   PayoutsCards,
   PaymentDetailsModal,
   PayoutDetailsModal,
+  PaymentDetailsSheet,
+  PayoutDetailsSheet,
 } from './components';
-import { PaymentDetailsSheet } from '../payment-details-sheet';
-import { PayoutDetailsSheet } from '../../farmer-payouts/payout-details-sheet';
 import { Pagination } from '../../../components/ui';
 import { mockPayments, mockPayouts, mockTransactionStats } from './mockTransactions';
 import './PaymentsPage.css';

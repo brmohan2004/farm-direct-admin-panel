@@ -3,7 +3,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-top: 12px;
+  padding: 12px 20px;
+  background-color: #ffffff;
   border-top: 1px solid var(--border-default, #eaecf0);
 }
 
@@ -31,4 +32,14 @@
   background-color: #fef2f2;
   border: 1px solid #fecaca;
   color: #dc2626;
+}
+
+.btn-close-gray {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.btn-close-gray:hover {
+  background-color: #f8fafc;
 }

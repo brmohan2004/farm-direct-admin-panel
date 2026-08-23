@@ -80,6 +80,7 @@ const ProductDetailsModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      isPopup={true}
       title={currentMode === 'edit' ? `Edit Product: ${product.name}` : `Inventory Details: ${product.name}`}
       subtitle={`Category: ${product.category} • Updated ${product.updatedDate || 'Recently'}`}
       maxWidth="580px"

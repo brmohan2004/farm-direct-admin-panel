@@ -16,16 +16,28 @@
 
 .consumer-sheet-container {
   background-color: #f9fafb;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
   box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
   width: 100%;
-  max-height: 92vh;
+  height: 55vh;
+  max-height: 55vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   animation: slideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  will-change: height, max-height, border-radius;
+  transition: height 350ms cubic-bezier(0.32, 0.72, 0, 1),
+              max-height 350ms cubic-bezier(0.32, 0.72, 0, 1),
+              border-radius 350ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.consumer-sheet-container.expanded {
+  height: 96vh;
+  max-height: 96vh;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 /* Handle Drag Bar */
@@ -335,8 +347,33 @@
   color: var(--text-primary, #111827);
 }
 
-.sheet-chevron {
-  color: var(--text-muted, #9ca3af);
+.consumer-sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 16px;
+  background-color: var(--bg-main, #ffffff);
+  border-top: 1px solid var(--border-default, #e5e7eb);
+}
+
+.consumer-btn-close {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.consumer-btn-close:hover {
+  background-color: #f8fafc;
 }
 
 /* Desktop override: Sheet hidden on large screens */

@@ -7,3 +7,5 @@ export { default as PayoutsTable } from './PayoutsTable';
 export { default as PayoutsCards } from './PayoutsCards';
 export { default as PaymentDetailsModal } from './PaymentDetailsModal';
 export { default as PayoutDetailsModal } from './PayoutDetailsModal';
+export { default as PaymentDetailsSheet } from './PaymentDetailsSheet';
+export { default as PayoutDetailsSheet } from './PayoutDetailsSheet';

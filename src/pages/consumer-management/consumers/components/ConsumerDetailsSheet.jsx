@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  ArrowLeft,
   MoreVertical,
   Phone,
   Mail,
@@ -16,14 +15,19 @@ import './ConsumerDetailsSheet.css';
 
 /**
  * ConsumerDetailsSheet Component
- * Mobile-specific Bottom Sheet / Slide-up view matching design Image 1
+ * Mobile-specific Bottom Sheet / Slide-up view with expandable scroll/drag behavior
  */
 const ConsumerDetailsSheet = ({ isOpen = false, onClose, consumer = null }) => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const lastScrollTop = useRef(0);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsExpanded(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -34,27 +38,71 @@ const ConsumerDetailsSheet = ({ isOpen = false, onClose, consumer = null }) => {
 
   if (!isOpen || !consumer) return null;
 
+  const handleScroll = (e) => {
+    const currentScrollTop = e.target.scrollTop;
+    if (currentScrollTop > 15 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (currentScrollTop <= 2 && isExpanded && currentScrollTop < lastScrollTop.current) {
+      setIsExpanded(false);
+    }
+    lastScrollTop.current = currentScrollTop;
+  };
+
+  const handleWheel = (e) => {
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+    if (e.deltaY > 0 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (e.deltaY < 0 && bodyScrollTop <= 2 && isExpanded) {
+      setIsExpanded(false);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY.current;
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+
+    if (deltaY < -20 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (deltaY > 30 && bodyScrollTop <= 5) {
+      if (isExpanded) {
+        setIsExpanded(false);
+        touchStartY.current = touchY;
+      } else {
+        if (onClose) onClose();
+      }
+    }
+  };
+
   return (
     <div className="consumer-sheet-backdrop" onClick={onClose}>
       <div
-        className="consumer-sheet-container"
+        className={`consumer-sheet-container ${isExpanded ? 'expanded' : ''}`}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onWheel={handleWheel}
       >
         {/* Top Handle */}
-        <div className="consumer-sheet-handle-bar">
+        <div
+          className="consumer-sheet-handle-bar"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          role="button"
+          aria-label="Toggle sheet height"
+        >
           <div className="consumer-sheet-handle" />
         </div>
 
-        {/* Back Navigation Bar */}
-        <div className="consumer-sheet-nav-bar">
-          <button className="consumer-sheet-back-btn" onClick={onClose}>
-            <ArrowLeft size={18} />
-            <span>Back to Consumers</span>
-          </button>
-        </div>
-
         {/* Sheet Content Scroll Body */}
-        <div className="consumer-sheet-body">
+        <div
+          className="consumer-sheet-body"
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
           {/* Top Profile Header Card */}
           <div className="consumer-sheet-card consumer-sheet-profile-card">
             <div className="consumer-sheet-profile-top">
@@ -271,6 +319,13 @@ const ConsumerDetailsSheet = ({ isOpen = false, onClose, consumer = null }) => {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Bottom Actions Footer Bar */}
+        <div className="consumer-sheet-footer">
+          <button type="button" className="consumer-btn-close" onClick={onClose}>
+            Close
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  ArrowLeft,
   X,
   Copy,
   Check,
@@ -19,14 +18,19 @@ import './OrderDetailsSheet.css';
 
 /**
  * OrderDetailsSheet Component
- * Mobile-specific Bottom Sheet / Slide-up view matching design Image 3
+ * Mobile-specific Bottom Sheet / Slide-up view with expandable scroll/drag behavior
  */
 const OrderDetailsSheet = ({ isOpen = false, onClose, order = null }) => {
   const [copiedField, setCopiedField] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const lastScrollTop = useRef(0);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsExpanded(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -36,6 +40,46 @@ const OrderDetailsSheet = ({ isOpen = false, onClose, order = null }) => {
   }, [isOpen]);
 
   if (!isOpen || !order) return null;
+
+  const handleScroll = (e) => {
+    const currentScrollTop = e.target.scrollTop;
+    if (currentScrollTop > 15 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (currentScrollTop <= 2 && isExpanded && currentScrollTop < lastScrollTop.current) {
+      setIsExpanded(false);
+    }
+    lastScrollTop.current = currentScrollTop;
+  };
+
+  const handleWheel = (e) => {
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+    if (e.deltaY > 0 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (e.deltaY < 0 && bodyScrollTop <= 2 && isExpanded) {
+      setIsExpanded(false);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY.current;
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+
+    if (deltaY < -20 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (deltaY > 30 && bodyScrollTop <= 5) {
+      if (isExpanded) {
+        setIsExpanded(false);
+        touchStartY.current = touchY;
+      } else {
+        if (onClose) onClose();
+      }
+    }
+  };
 
   const handleCopy = (text, fieldName) => {
     if (text) {
@@ -55,33 +99,28 @@ const OrderDetailsSheet = ({ isOpen = false, onClose, order = null }) => {
   return (
     <div className="order-sheet-backdrop" onClick={onClose}>
       <div
-        className="order-sheet-container"
+        className={`order-sheet-container ${isExpanded ? 'expanded' : ''}`}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onWheel={handleWheel}
       >
         {/* Top Handle / Drag bar */}
-        <div className="order-sheet-handle-bar">
+        <div
+          className="order-sheet-handle-bar"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          role="button"
+          aria-label="Toggle sheet height"
+        >
           <div className="order-sheet-handle" />
         </div>
 
-        {/* Back Navigation Bar */}
-        <div className="order-sheet-nav-bar">
-          <button className="order-sheet-back-btn" onClick={onClose}>
-            <ArrowLeft size={18} />
-            <span>Back to Orders</span>
-          </button>
-        </div>
-
-        {/* Title Header */}
-        <div className="order-sheet-header">
-          <div className="order-sheet-header-text">
-            <h2 className="order-sheet-title">Order Details</h2>
-            <p className="order-sheet-subtitle">View detailed information about this order.</p>
-          </div>
-          <StatusBadge status={order.status} size="md" />
-        </div>
-
         {/* Sheet Content Scroll Body */}
-        <div className="order-sheet-body">
+        <div
+          className="order-sheet-body"
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
           {/* Order Header Summary Card */}
           <div className="order-sheet-card order-sheet-summary-card">
             <div className="order-sheet-summary-left">
@@ -262,6 +301,14 @@ const OrderDetailsSheet = ({ isOpen = false, onClose, order = null }) => {
           >
             <Printer size={16} />
             <span>Download Invoice</span>
+          </button>
+
+          <button
+            type="button"
+            className="order-sheet-action-btn order-sheet-action-btn--close"
+            onClick={onClose}
+          >
+            Close
           </button>
         </div>
       </div>

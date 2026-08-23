@@ -2,7 +2,7 @@
 .consumers-stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-md, 16px);
+  gap: var(--space-md, 14px);
   width: 100%;
 }
 
@@ -10,108 +10,108 @@
   background-color: var(--bg-card, #ffffff);
   border: 1px solid var(--border-default, #e5e7eb);
   border-radius: var(--radius-md, 12px);
-  padding: 16px 18px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-fast, 150ms ease);
 }
 
 .consumers-stat-card:hover {
-  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.07));
   border-color: var(--border-strong, #d1d5db);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.consumers-stat-top {
+.stat-card-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
 }
 
-.consumers-stat-icon-wrap {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+.stat-card-icon-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.consumers-stat-icon-wrap--green {
-  background-color: #f0fdf4;
-  color: #16a34a;
-}
-
-.consumers-stat-icon-wrap--purple {
-  background-color: #faf5ff;
-  color: #9333ea;
-}
-
-.consumers-stat-icon-wrap--orange {
-  background-color: #fff7ed;
-  color: #d97706;
-}
-
-.consumers-stat-icon-wrap--blue {
-  background-color: #eff6ff;
-  color: #2563eb;
-}
-
-.consumers-stat-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.consumers-stat-title {
+.stat-card-label {
   font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--text-secondary, #6b7280);
+  font-weight: 600;
+  color: var(--text-secondary, #4b5563);
+  line-height: 1;
 }
 
-.consumers-stat-value {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-primary, #111827);
+.stat-card-body {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.stat-card-val {
   font-family: var(--font-heading, sans-serif);
-  line-height: 1.2;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  line-height: 1;
 }
 
-.consumers-stat-subtext {
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-top: 2px;
+.stat-card-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
 }
 
-.consumers-stat-subtext--positive {
-  color: #16a34a;
-}
-
-.consumers-stat-subtext--neutral {
-  color: #6b7280;
-}
-
-/* Responsiveness */
-@media (max-width: 1024px) {
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
   .consumers-stat-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .consumers-stat-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
   }
 
   .consumers-stat-card {
-    padding: 12px 14px;
-    gap: 8px;
+    padding: 10px 8px;
+    gap: 6px;
+    border-radius: 10px;
   }
 
-  .consumers-stat-value {
-    font-size: 1.25rem;
+  .stat-card-header {
+    gap: 5px;
+  }
+
+  .stat-card-icon-pill {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+  }
+
+  .stat-card-label {
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stat-card-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .stat-card-val {
+    font-size: 1.05rem;
+  }
+
+  .stat-card-badge {
+    font-size: 0.625rem;
+    padding: 1px 4px;
   }
 }

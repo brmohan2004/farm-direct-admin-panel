@@ -4,7 +4,8 @@
  * Supports mobile card view, desktop/tablet table view, search filtering, and CRUD modals.
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus } from 'lucide-react';
 import {
   CategoriesHeader,
   CategoriesSearch,
@@ -85,6 +86,25 @@ const CategoriesPage = () => {
   const [editingCategory, setEditingCategory] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deletingCategory, setDeletingCategory] = useState(null);
+
+  // FAB Scroll state
+  const [isFabVisible, setIsFabVisible] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 40) {
+        setIsFabVisible(false);
+      } else {
+        setIsFabVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Filtered categories
   const filteredCategories = useMemo(() => {
@@ -183,6 +203,16 @@ const CategoriesPage = () => {
         onConfirm={handleConfirmDelete}
         category={deletingCategory}
       />
+
+      {/* Mobile Floating Add Category FAB */}
+      <button
+        type="button"
+        className={`categories-floating-add-fab ${isFabVisible ? 'fab-visible' : 'fab-hidden'}`}
+        onClick={handleOpenAddModal}
+        aria-label="Add Category"
+      >
+        <Plus size={22} />
+      </button>
     </div>
   );
 };

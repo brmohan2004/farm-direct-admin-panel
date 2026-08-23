@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { UserPlus } from 'lucide-react';
 import {
   ConsumersHeader,
   ConsumersStatCards,
@@ -35,6 +36,7 @@ const ConsumersPage = () => {
 
   // Mobile viewport detection
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 640);
+  const [isFabVisible, setIsFabVisible] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,6 +44,23 @@ const ConsumersPage = () => {
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 40) {
+        setIsFabVisible(false);
+      } else {
+        setIsFabVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Stats calculation
@@ -188,6 +207,16 @@ const ConsumersPage = () => {
         }}
         currentFilters={filters}
       />
+
+      {/* Mobile Floating Add Consumer FAB Button */}
+      <button
+        type="button"
+        className={`consumers-mobile-add-fab ${isFabVisible ? 'fab-visible' : 'fab-hidden'}`}
+        onClick={() => setIsAddModalOpen(true)}
+        aria-label="Add Consumer"
+      >
+        <UserPlus size={22} />
+      </button>
     </div>
   );
 };

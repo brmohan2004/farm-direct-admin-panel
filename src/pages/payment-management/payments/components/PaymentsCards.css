@@ -1,121 +1,145 @@
 .payments-cards-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
 .payment-mobile-card {
-  background-color: var(--bg-card, #ffffff);
+  background-color: #ffffff;
   border: 1px solid var(--border-default, #e5e7eb);
-  border-radius: var(--radius-md, 12px);
-  padding: 14px;
-  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   transition: all var(--transition-fast, 150ms ease);
 }
 
+.payment-mobile-card:hover,
 .payment-mobile-card:active {
-  background-color: var(--bg-hover, #f9fafb);
-  transform: scale(0.99);
+  border-color: var(--primary-border, #bbf7d0);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08);
+  background-color: #fafdfb;
 }
 
-.pay-card-header {
+/* Top Row */
+.pay-card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
 }
 
-.pay-card-header-left {
+.pay-card-main-info {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
-.pay-card-order-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.pay-card-order-no {
-  font-size: var(--font-size-base, 0.95rem);
-  font-weight: 700;
-  color: var(--text-primary, #111827);
-}
-
-.pay-card-txn {
-  font-size: var(--font-size-xs, 0.75rem);
-  color: var(--text-muted, #9ca3af);
-  font-family: var(--font-mono, monospace);
-}
-
-.pay-card-header-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.pay-card-amount {
-  font-size: var(--font-size-base, 1rem);
-  font-weight: 800;
-  color: var(--text-primary, #111827);
-}
-
-.pay-card-divider {
-  height: 1px;
-  background-color: var(--border-light, #f3f4f6);
-  margin: 10px 0;
-}
-
-.pay-card-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-
-.pay-card-detail-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pay-card-detail-item.span-full {
-  grid-column: span 2;
-}
-
-.detail-icon {
+.pay-card-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #f0fdf4;
+  border: 1px solid #dcfce7;
   color: var(--primary, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.detail-text {
-  font-size: var(--font-size-xs, 0.75rem);
+.pay-card-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pay-card-order-id {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  line-height: 1.2;
+}
+
+.pay-card-customer {
+  font-size: 0.78125rem;
   color: var(--text-secondary, #4b5563);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.pay-card-footer {
+.pay-card-amount-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.pay-card-amount {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--text-primary, #111827);
+  letter-spacing: -0.2px;
+}
+
+/* Bottom Meta Row */
+.pay-card-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  gap: 8px;
   padding-top: 8px;
-  border-top: 1px dashed var(--border-default, #e5e7eb);
+  border-top: 1px solid #f3f4f6;
 }
 
-.view-link-text {
-  font-size: var(--font-size-xs, 0.75rem);
+.pay-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted, #6b7280);
+  min-width: 0;
+}
+
+.pay-meta-method {
   font-weight: 500;
-  color: var(--primary, #16a34a);
+  color: var(--text-secondary, #374151);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.arrow-icon {
+.pay-meta-bullet {
+  color: #d1d5db;
+  font-size: 0.7rem;
+}
+
+.pay-meta-date {
+  color: var(--text-muted, #6b7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pay-card-arrow {
+  color: var(--text-muted, #9ca3af);
+  flex-shrink: 0;
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.payment-mobile-card:hover .pay-card-arrow {
   color: var(--primary, #16a34a);
+  transform: translateX(2px);
 }
 
 .payments-cards-empty {
@@ -124,5 +148,5 @@
   color: var(--text-secondary, #4b5563);
   background-color: var(--bg-card, #ffffff);
   border: 1px solid var(--border-default, #e5e7eb);
-  border-radius: var(--radius-md, 12px);
+  border-radius: 12px;
 }

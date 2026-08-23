@@ -36,3 +36,47 @@
     display: block;
   }
 }
+
+/* Mobile Floating Action Button */
+.categories-floating-add-fab {
+  display: none;
+  position: fixed;
+  bottom: 76px;
+  right: 16px;
+  z-index: 99;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+  cursor: pointer;
+  transition: opacity 220ms ease, transform 220ms ease;
+  will-change: transform, opacity;
+}
+
+.categories-floating-add-fab:active {
+  transform: scale(0.92);
+}
+
+.categories-floating-add-fab.fab-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.9);
+}
+
+.categories-floating-add-fab.fab-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+@media (max-width: 640px) {
+  .categories-floating-add-fab {
+    display: inline-flex;
+  }
+}

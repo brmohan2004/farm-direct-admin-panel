@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft,
   User,
   Calendar,
   CreditCard,
@@ -18,11 +17,14 @@ import './PaymentDetailsSheet.css';
 
 /**
  * PaymentDetailsSheet Component
- * Mobile Bottom Sheet / Modal Popup for Payment Details
+ * Mobile Bottom Sheet for Payment Details with expandable drag/scroll behavior
  */
 const PaymentDetailsSheet = ({ isOpen = true, onClose, payment: propPayment = null }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const touchStartY = useRef(0);
+  const bodyRef = useRef(null);
 
   const mockPayment = propPayment || {
     id: id || 'PAY-8821',
@@ -50,6 +52,7 @@ const PaymentDetailsSheet = ({ isOpen = true, onClose, payment: propPayment = nu
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsExpanded(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -68,24 +71,82 @@ const PaymentDetailsSheet = ({ isOpen = true, onClose, payment: propPayment = nu
 
   if (!isOpen || !payment) return null;
 
+  const lastScrollTop = useRef(0);
+
+  const handleScroll = (e) => {
+    const currentScrollTop = e.target.scrollTop;
+
+    // Scrolling down into content -> Expand to full screen
+    if (currentScrollTop > 15 && !isExpanded) {
+      setIsExpanded(true);
+    }
+    // Scrolling upward back to the top -> Shrink back to partial screen
+    else if (currentScrollTop <= 2 && isExpanded && currentScrollTop < lastScrollTop.current) {
+      setIsExpanded(false);
+    }
+
+    lastScrollTop.current = currentScrollTop;
+  };
+
+  const handleWheel = (e) => {
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+    if (e.deltaY > 0 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (e.deltaY < 0 && bodyScrollTop <= 2 && isExpanded) {
+      setIsExpanded(false);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY.current;
+    const bodyScrollTop = bodyRef.current ? bodyRef.current.scrollTop : 0;
+
+    if (deltaY < -20 && !isExpanded) {
+      setIsExpanded(true);
+    } else if (deltaY > 30 && bodyScrollTop <= 5) {
+      if (isExpanded) {
+        setIsExpanded(false);
+        touchStartY.current = touchY;
+      } else {
+        handleClose();
+      }
+    }
+  };
+
+  const handleHandleClick = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <div className="pay-sheet-backdrop" onClick={handleClose}>
-      <div className="pay-sheet-container" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`pay-sheet-container ${isExpanded ? 'expanded' : ''}`}
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onWheel={handleWheel}
+      >
         {/* Drag Handle */}
-        <div className="pay-sheet-handle-bar">
+        <div
+          className="pay-sheet-handle-bar"
+          onClick={handleHandleClick}
+          role="button"
+          aria-label="Toggle sheet height"
+        >
           <div className="pay-sheet-handle" />
         </div>
 
-        {/* Back Navigation Bar */}
-        <div className="pay-sheet-nav-bar">
-          <button className="pay-sheet-back-btn" onClick={handleClose}>
-            <ArrowLeft size={18} />
-            <span>Back to Payments</span>
-          </button>
-        </div>
-
         {/* Sheet Content Scroll Area */}
-        <div className="pay-sheet-body">
+        <div
+          className="pay-sheet-body"
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
           {/* Header section with Badge */}
           <div className="pay-sheet-header-row">
             <div>

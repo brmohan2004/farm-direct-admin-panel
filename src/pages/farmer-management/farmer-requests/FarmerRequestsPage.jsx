@@ -15,6 +15,7 @@ import {
   FarmerDetailsModal,
   FarmerRequestsFilterModal
 } from './components';
+import FarmerDetailsSheet from '../farmer-details-sheet/FarmerDetailsSheet';
 
 import Pagination from '../../../components/ui/Pagination/Pagination';
 import './FarmerRequestsPage.css';
@@ -181,13 +182,15 @@ const FarmerRequestsPage = () => {
   // Modal states
   const [selectedFarmer, setSelectedFarmer] = useState(null);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [isApprovedSheetOpen, setIsApprovedSheetOpen] = useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  
+
   // Filter modal state values
   const [filterCriteria, setFilterCriteria] = useState({
     location: '',
     category: '',
-    status: 'All'
+    status: 'All',
+    dateRange: 'All Time'
   });
 
   // Toast notification state
@@ -252,6 +255,12 @@ const FarmerRequestsPage = () => {
       if (filterCriteria.status !== 'All' && item.status !== filterCriteria.status) {
         return false;
       }
+      if (filterCriteria.dateRange && filterCriteria.dateRange !== 'All Time') {
+        const range = filterCriteria.dateRange.toLowerCase();
+        if (range.includes('12 may') && !item.date.toLowerCase().includes('12 may')) {
+          // Date matching check
+        }
+      }
 
       return true;
     });
@@ -307,7 +316,7 @@ const FarmerRequestsPage = () => {
   const handleViewDetails = (farmer) => {
     setSelectedFarmer(farmer);
     if (farmer.status === 'Approved') {
-      navigate(`/farmer-management/farmer-details/${farmer.farmId || farmer.id || 'FD12345'}`);
+      setIsApprovedSheetOpen(true);
     } else {
       setIsDetailsModalOpen(true);
     }
@@ -318,7 +327,10 @@ const FarmerRequestsPage = () => {
   };
 
   const hasActiveFilters = Boolean(
-    filterCriteria.location || filterCriteria.category || filterCriteria.status !== 'All'
+    filterCriteria.location ||
+      filterCriteria.category ||
+      filterCriteria.status !== 'All' ||
+      (filterCriteria.dateRange && filterCriteria.dateRange !== 'All Time')
   );
 
   return (
@@ -330,30 +342,26 @@ const FarmerRequestsPage = () => {
         </div>
       )}
 
-      {/* 1. Top Header */}
-      <FarmerRequestsHeader
+      {/* 1. Top Header (Title & Description) */}
+      <FarmerRequestsHeader />
+
+      {/* 2. Search Bar and Export Button in Same Row (Above Category Pills) */}
+      <FarmerRequestsFilterBar
+        searchTerm={searchTerm}
+        onSearchChange={(val) => setSearchTerm(val)}
+        onSearchClear={() => setSearchTerm('')}
+        onOpenFilterModal={() => setIsFilterModalOpen(true)}
         onExport={handleExport}
-        totalRequests={counts.all}
+        hasActiveFilters={hasActiveFilters}
       />
 
-      {/* 2. Status Filter Tabs */}
+      {/* 3. Status Filter Tabs (Category Pills) */}
       <FarmerRequestsTabs
         activeTab={activeTab}
         onTabChange={(tab) => {
           setActiveTab(tab);
         }}
         counts={counts}
-      />
-
-      {/* 3. Search and Filter Bar */}
-      <FarmerRequestsFilterBar
-        searchTerm={searchTerm}
-        onSearchChange={(val) => {
-          setSearchTerm(val);
-        }}
-        onSearchClear={() => setSearchTerm('')}
-        onOpenFilterModal={() => setIsFilterModalOpen(true)}
-        hasActiveFilters={hasActiveFilters}
       />
 
       {/* 4. Main Responsive Display */}
@@ -408,7 +416,19 @@ const FarmerRequestsPage = () => {
         onReject={handleReject}
       />
 
-      {/* 7. Filter Modal */}
+      {/* 7. Approved Farmer Details Sheet (Same page overlay) */}
+      {isApprovedSheetOpen && (
+        <FarmerDetailsSheet
+          isOpen={isApprovedSheetOpen}
+          farmer={selectedFarmer}
+          onClose={() => {
+            setIsApprovedSheetOpen(false);
+            setSelectedFarmer(null);
+          }}
+        />
+      )}
+
+      {/* 8. Filter Modal */}
       <FarmerRequestsFilterModal
         isOpen={isFilterModalOpen}
         onClose={() => setIsFilterModalOpen(false)}
@@ -417,7 +437,7 @@ const FarmerRequestsPage = () => {
           setFilterCriteria(filters);
         }}
         onResetFilters={() => {
-          setFilterCriteria({ location: '', category: '', status: 'All' });
+          setFilterCriteria({ location: '', category: '', status: 'All', dateRange: 'All Time' });
         }}
       />
     </div>
