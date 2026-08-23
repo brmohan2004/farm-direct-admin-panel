@@ -1,17 +1,18 @@
 import React from 'react';
-import { ShieldCheck, Lock, CheckCircle2, ChevronRight, ShieldAlert, KeyRound } from 'lucide-react';
+import { ShieldCheck, Lock, CheckCircle2, ChevronRight, KeyRound, LogOut } from 'lucide-react';
 import './SettingsSecurityCard.css';
 
 /**
  * SettingsSecurityCard Component
- * Displays security status, encryption info, and system health status.
+ * Displays security status, encryption info, and session log out button.
  * Renders as a dedicated sidebar card on Desktop/Tablet and a full-width banner on Mobile.
  */
 const SettingsSecurityCard = ({
   lastUpdated = '20 Aug 2026 10:45 AM',
   statusText = 'Settings are safe and secure',
   description = 'All your settings data are encrypted and protected.',
-  onSecurityClick
+  onSecurityClick,
+  onLogout
 }) => {
   return (
     <div className="settings-security-card" onClick={onSecurityClick}>
@@ -41,6 +42,20 @@ const SettingsSecurityCard = ({
             <ShieldCheck size={16} className="security-status-icon" />
             <span className="security-status-text">{lastUpdated}</span>
           </div>
+
+          {onLogout && (
+            <button
+              type="button"
+              className="security-logout-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                onLogout();
+              }}
+            >
+              <LogOut size={16} />
+              <span>Log Out</span>
+            </button>
+          )}
         </div>
       </div>
 

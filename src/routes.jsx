@@ -15,12 +15,9 @@ import {
   ForgotPasswordPage,
   DashboardPage,
   FarmerRequestsPage,
-  FarmerVerificationPage,
   FarmersPage,
   FarmerDetailsSheet,
   StockInboxPage,
-  StockRequestDetailsPage,
-  InventoryPage,
   ProductsPage,
   AddProductPage,
   ProductDetailsSheet,
@@ -55,7 +52,7 @@ export const AppRoutes = () => {
           
           {/* Farmer Management */}
           <Route path="/farmer-management/requests" element={<FarmerRequestsPage />} />
-          <Route path="/farmer-management/verification" element={<FarmerVerificationPage />} />
+          <Route path="/farmer-management/verification" element={<Navigate to="/farmer-management/requests" replace />} />
           <Route path="/farmer-management/farmers" element={<FarmersPage />} />
           <Route path="/farmer-management/farmers/:id" element={<FarmerDetailsSheet isOpen={true} />} />
           <Route path="/farmer-management/farmer-details" element={<FarmerDetailsSheet isOpen={true} />} />
@@ -63,8 +60,7 @@ export const AppRoutes = () => {
           
           {/* Stock Management */}
           <Route path="/stock-management/inbox" element={<StockInboxPage />} />
-          <Route path="/stock-management/requests/:id" element={<StockRequestDetailsPage />} />
-          <Route path="/stock-management/inventory" element={<InventoryPage />} />
+          <Route path="/stock-management/inventory" element={<Navigate to="/product-management/products" replace />} />
 
           {/* Product Management */}
           <Route path="/product-management/products" element={<ProductsPage />} />

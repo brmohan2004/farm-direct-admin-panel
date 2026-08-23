@@ -7,11 +7,15 @@ import MobileBottomNav from '../components/navigation/MobileBottomNav';
 const AdminLayout = () => {
   const location = useLocation();
 
-  // Check if current page is Farmer Details page
+  // Check if current page is Farmer Details to hide mobile header nav
   const isFarmerDetailsPage =
     location.pathname.includes('/farmer-details') ||
     (location.pathname.startsWith('/farmer-management/farmers/') &&
       location.pathname.split('/').filter(Boolean).length > 2);
+
+  const isHideBottomNav =
+    location.pathname.includes('/settings') ||
+    location.pathname.includes('/notifications');
 
   return (
     <div className={`admin-layout ${isFarmerDetailsPage ? 'hide-mobile-header-nav' : ''}`}>
@@ -22,7 +26,7 @@ const AdminLayout = () => {
           <Outlet />
         </main>
       </div>
-      <MobileBottomNav />
+      {!isHideBottomNav && <MobileBottomNav />}
     </div>
   );
 };

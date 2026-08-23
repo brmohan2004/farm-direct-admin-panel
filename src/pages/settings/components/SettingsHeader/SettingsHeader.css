@@ -2,43 +2,21 @@
 
 .settings-header {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-xs, 4px);
-  margin-bottom: var(--space-md, 16px);
+  align-items: center;
+  margin-bottom: var(--space-sm, 12px);
   width: 100%;
-}
-
-.settings-header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.settings-header-title {
-  font-size: var(--font-size-2xl, 1.5rem);
-  font-weight: 700;
-  color: var(--text-primary, #111827);
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.settings-header-subtitle {
-  font-size: var(--font-size-sm, 0.875rem);
-  color: var(--text-secondary, #6b7280);
-  margin: 0;
 }
 
 .settings-header-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm, 8px);
-  margin-top: 8px;
+  width: 100%;
 }
 
 .settings-search-wrapper {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 360px;
 }
 
 .settings-search-icon {
@@ -53,7 +31,7 @@
 .settings-search-input {
   width: 100%;
   padding: 8px 12px 8px 36px;
-  background-color: var(--bg-surface, #f9fafb);
+  background-color: var(--bg-card, #ffffff);
   border: 1px solid var(--border-default, #e5e7eb);
   border-radius: var(--radius-md, 8px);
   font-size: var(--font-size-sm, 0.875rem);
@@ -68,18 +46,9 @@
   background-color: var(--bg-main, #ffffff);
 }
 
-/* Tablet & Mobile responsive adjustments for Header */
 @media (max-width: 640px) {
   .settings-header {
-    margin-bottom: var(--space-sm, 12px);
-  }
-
-  .settings-header-title {
-    font-size: var(--font-size-xl, 1.25rem);
-  }
-
-  .settings-header-subtitle {
-    font-size: var(--font-size-xs, 0.8125rem);
+    margin-bottom: var(--space-xs, 8px);
   }
 
   .settings-search-wrapper {

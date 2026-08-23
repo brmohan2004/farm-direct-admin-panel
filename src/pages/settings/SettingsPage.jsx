@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LogOut } from 'lucide-react';
 import {
   SettingsHeader,
   SettingsSection,
@@ -11,9 +13,10 @@ import './SettingsPage.css';
 
 /**
  * SettingsPage Component
- * Fully responsive mobile, tablet, and desktop settings page.
+ * Fully responsive mobile, tablet, and desktop settings page with logout capability.
  */
 const SettingsPage = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSetting, setSelectedSetting] = useState(null);
 
@@ -73,7 +76,7 @@ const SettingsPage = () => {
     }
   ];
 
-  // Support & More Group
+  // Support & Account Group
   const supportSettings = [
     {
       id: 'support',
@@ -86,8 +89,20 @@ const SettingsPage = () => {
       iconType: 'system',
       title: 'System Settings',
       description: 'Manage app update and system preferences.'
+    },
+    {
+      id: 'logout',
+      iconType: 'logout',
+      title: 'Log Out Session',
+      description: 'Sign out securely from admin dashboard.'
     }
   ];
+
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate('/auth/login', { replace: true });
+  };
 
   // Filter items based on search query
   const filterItems = (items) => {
@@ -105,6 +120,10 @@ const SettingsPage = () => {
   const filteredSupport = filterItems(supportSettings);
 
   const handleItemClick = (item) => {
+    if (item.id === 'logout') {
+      handleLogout();
+      return;
+    }
     setSelectedSetting(item);
   };
 
@@ -121,8 +140,6 @@ const SettingsPage = () => {
     <div className="page-container settings-page-container">
       {/* Header Section */}
       <SettingsHeader
-        title="Settings"
-        subtitle="Manage consumer app settings and preferences."
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
@@ -165,9 +182,9 @@ const SettingsPage = () => {
             </SettingsSection>
           )}
 
-          {/* Section 3: SUPPORT & MORE */}
+          {/* Section 3: SUPPORT & ACCOUNT */}
           {filteredSupport.length > 0 && (
-            <SettingsSection title="SUPPORT & MORE">
+            <SettingsSection title="SUPPORT & ACCOUNT">
               {filteredSupport.map((item, idx) => (
                 <SettingsItem
                   key={item.id}
@@ -181,6 +198,18 @@ const SettingsPage = () => {
               ))}
             </SettingsSection>
           )}
+
+          {/* Dedicated Quick Logout Banner for Mobile */}
+          <div className="settings-mobile-logout-box">
+            <button
+              type="button"
+              className="settings-mobile-logout-btn"
+              onClick={handleLogout}
+            >
+              <LogOut size={18} />
+              <span>Log Out Admin Session</span>
+            </button>
+          </div>
 
           {/* Fallback if search matches nothing */}
           {filteredGeneral.length === 0 &&
@@ -204,6 +233,7 @@ const SettingsPage = () => {
               statusText="Settings are safe and secure"
               description="Your app settings are protected and encrypted."
               onSecurityClick={handleSecurityClick}
+              onLogout={handleLogout}
             />
           </div>
         </div>
@@ -215,6 +245,7 @@ const SettingsPage = () => {
             statusText="Settings are safe and secure"
             description="All your settings data are encrypted and protected."
             onSecurityClick={handleSecurityClick}
+            onLogout={handleLogout}
           />
         </div>
       </div>

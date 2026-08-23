@@ -1,0 +1,57 @@
+/* NotificationsFilter Component Styles */
+
+.notifications-filter-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.notifications-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: max-content;
+}
+
+.notifications-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-full, 9999px);
+  font-size: var(--font-size-sm, 0.85rem);
+  font-weight: 500;
+  color: var(--text-secondary, #4b5563);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.notifications-tab-btn:hover {
+  background-color: var(--bg-surface, #f9fafb);
+  color: var(--text-primary, #111827);
+}
+
+.notifications-tab-btn--active {
+  background-color: var(--primary, #16a34a);
+  border-color: var(--primary-hover, #15803d);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(22, 163, 74, 0.2);
+}
+
+.notifications-tab-count {
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-full, 9999px);
+  background-color: var(--bg-subtle, #e5e7eb);
+  color: var(--text-primary, #374151);
+}
+
+.notifications-tab-count--active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}

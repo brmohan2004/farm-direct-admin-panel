@@ -11,7 +11,8 @@ import {
   Headphones,
   Cpu,
   Shield,
-  Cog
+  Cog,
+  LogOut
 } from 'lucide-react';
 import './SettingsIconAvatar.css';
 
@@ -70,6 +71,11 @@ const SETTINGS_PRESETS = {
     bgColor: '#dcfce7',
     iconColor: '#16a34a',
     icon: Shield
+  },
+  logout: {
+    bgColor: '#fee2e2',
+    iconColor: '#dc2626',
+    icon: LogOut
   }
 };
 

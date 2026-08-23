@@ -1,0 +1,61 @@
+/* NotificationsHeader Component Styles */
+
+.notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: var(--space-xs, 8px);
+  width: 100%;
+}
+
+.notifications-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notifications-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-sm, 0.8125rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast, 150ms ease), border-color var(--transition-fast, 150ms ease);
+}
+
+.notifications-mark-read-btn {
+  background-color: var(--primary-subtle, #f0fdf4);
+  border: 1px solid var(--primary-border, #bbf7d0);
+  color: var(--primary-hover, #15803d);
+}
+
+.notifications-mark-read-btn:hover {
+  background-color: #dcfce7;
+}
+
+.notifications-clear-btn {
+  background-color: var(--bg-surface, #f9fafb);
+  border: 1px solid var(--border-default, #e5e7eb);
+  color: var(--text-secondary, #4b5563);
+}
+
+.notifications-clear-btn:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+@media (max-width: 640px) {
+  .notifications-header {
+    justify-content: flex-start;
+    margin-bottom: var(--space-xs, 8px);
+  }
+
+  .notifications-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

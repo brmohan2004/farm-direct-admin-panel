@@ -1,6 +1,6 @@
 import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
-import { Sprout } from 'lucide-react';
+import { useLocation, useNavigate, NavLink } from 'react-router-dom';
+import { Sprout, ArrowLeft } from 'lucide-react';
 import Search from './Search';
 import Notification from './Notification';
 import ProfileMenu from './ProfileMenu';
@@ -18,13 +18,10 @@ const getPageTitle = (pathname) => {
   if (pathname.includes('/order-management/orders') || pathname.includes('/orders')) return 'Orders';
   if (pathname.includes('/order-details')) return 'Order Details';
   if (pathname.includes('/stock-management/inbox')) return 'Stock Inbox';
-  if (pathname.includes('/stock-management/requests')) return 'Stock Request Details';
-  if (pathname.includes('/stock-management/inventory')) return 'Inventory';
   if (pathname.includes('/product-management/products')) return 'Products';
   if (pathname.includes('/product-management/add')) return 'Add Product';
   if (pathname.includes('/product-management/categories')) return 'Categories';
   if (pathname.includes('/farmer-management/requests')) return 'Farmer Requests';
-  if (pathname.includes('/farmer-management/verification')) return 'Farmer Verification';
   if (pathname.includes('/farmer-management/farmers')) return 'Farmers';
   if (pathname.includes('/farmer-management/farmer-details')) return 'Farmer Details';
   if (pathname.includes('/notifications')) return 'Notifications';
@@ -34,18 +31,42 @@ const getPageTitle = (pathname) => {
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const isSettingsPage = location.pathname.includes('/settings');
+  const isNotificationsPage = location.pathname.includes('/notifications');
+  const showBackButton = isSettingsPage || isNotificationsPage;
   const pageTitle = getPageTitle(location.pathname);
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/dashboard');
+    }
+  };
 
   return (
     <header className="header-root">
       <div className="header-left">
-        <NavLink to="/dashboard" className="header-logo-wrap">
-          <Sprout className="header-logo-icon" />
-          <div className="header-logo-text desktop-only-brand">
-            <span className="header-brand-title">Farm<span style={{ color: 'var(--primary)' }}>Direct</span></span>
-            <span className="header-brand-sub">Admin Panel</span>
-          </div>
-        </NavLink>
+        {showBackButton ? (
+          <button
+            type="button"
+            className="header-back-btn"
+            onClick={handleBack}
+            aria-label="Go Back"
+          >
+            <ArrowLeft size={18} />
+            <span className="header-back-text">Back</span>
+          </button>
+        ) : (
+          <NavLink to="/dashboard" className="header-logo-wrap">
+            <Sprout className="header-logo-icon" />
+            <div className="header-logo-text desktop-only-brand">
+              <span className="header-brand-title">Farm<span style={{ color: 'var(--primary)' }}>Direct</span></span>
+              <span className="header-brand-sub">Admin Panel</span>
+            </div>
+          </NavLink>
+        )}
 
         {/* Respective Page Name displayed ONLY on Mobile Screen */}
         <div className="header-mobile-page-name" title={pageTitle}>
@@ -58,8 +79,12 @@ const Header = () => {
       </div>
 
       <div className="header-right">
-        <Notification count={12} messageCount={5} />
-        <ProfileMenu />
+        {!showBackButton && (
+          <>
+            <Notification count={12} messageCount={5} />
+            <ProfileMenu />
+          </>
+        )}
       </div>
     </header>
   );

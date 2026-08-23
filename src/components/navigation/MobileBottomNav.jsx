@@ -37,6 +37,10 @@ const MobileBottomNav = () => {
 
   const isHomePage = location.pathname === '/dashboard' || location.pathname === '/';
 
+  if (location.pathname.includes('/settings') || location.pathname.includes('/notifications')) {
+    return null;
+  }
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
 

@@ -1,0 +1,10 @@
+/* NotificationsPage Styles */
+
+.notifications-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
