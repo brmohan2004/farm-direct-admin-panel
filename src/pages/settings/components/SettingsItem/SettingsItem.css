@@ -1,0 +1,113 @@
+/* SettingsItem Component Styles */
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background-color: var(--bg-main, #ffffff);
+  border-bottom: 1px solid var(--border-light, #f3f4f6);
+  cursor: pointer;
+  transition: background-color var(--transition-fast, 150ms ease), transform var(--transition-fast, 150ms ease);
+  user-select: none;
+}
+
+.settings-item:hover {
+  background-color: var(--bg-surface, #f9fafb);
+}
+
+.settings-item:active {
+  background-color: var(--bg-subtle, #f3f4f6);
+}
+
+.settings-item--last {
+  border-bottom: none;
+}
+
+.settings-item-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-item-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.settings-item-title {
+  font-size: var(--font-size-base, 0.95rem);
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.settings-item-badge {
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full, 9999px);
+  background-color: var(--primary-subtle, #f0fdf4);
+  color: var(--primary, #16a34a);
+  border: 1px solid var(--primary-border, #bbf7d0);
+  line-height: 1.2;
+}
+
+.settings-item-description {
+  font-size: var(--font-size-sm, 0.825rem);
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-item-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 12px;
+  color: var(--text-muted, #9ca3af);
+  transition: color var(--transition-fast, 150ms ease), transform var(--transition-fast, 150ms ease);
+}
+
+.settings-item:hover .settings-item-arrow {
+  color: var(--text-primary, #111827);
+  transform: translateX(3px);
+}
+
+/* Touch & Mobile Optimizations */
+@media (max-width: 640px) {
+  .settings-item {
+    padding: 14px 14px;
+  }
+
+  .settings-item-left {
+    gap: 12px;
+  }
+
+  .settings-item-title {
+    font-size: var(--font-size-sm, 0.875rem);
+  }
+
+  .settings-item-description {
+    font-size: var(--font-size-xs, 0.785rem);
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}

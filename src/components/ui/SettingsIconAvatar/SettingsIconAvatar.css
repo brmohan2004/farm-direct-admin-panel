@@ -1,0 +1,34 @@
+/* SettingsIconAvatar Component Styles */
+
+.settings-icon-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md, 10px);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast, 150ms ease), box-shadow var(--transition-fast, 150ms ease);
+}
+
+.settings-icon-avatar--sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.settings-icon-avatar--md {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+.settings-icon-avatar--lg {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+}
+
+.settings-icon-avatar--xl {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+}

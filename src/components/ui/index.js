@@ -10,3 +10,5 @@ export { default as OrderIconAvatar } from './OrderIconAvatar/OrderIconAvatar';
 export { default as UserAvatar } from './UserAvatar/UserAvatar';
 export { default as CopyButton } from './CopyButton/CopyButton';
 export { default as WalletIconAvatar } from './WalletIconAvatar/WalletIconAvatar';
+export { default as SettingsIconAvatar } from './SettingsIconAvatar/SettingsIconAvatar';
+
