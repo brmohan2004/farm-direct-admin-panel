@@ -1,0 +1,88 @@
+/* StockInboxFilterBar Styles */
+.stock-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md, 14px);
+  width: 100%;
+}
+
+.stock-filter-bar-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.stock-search-input {
+  width: 100%;
+}
+
+.stock-filter-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.stock-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 9px 16px;
+  font-size: var(--font-size-sm, 0.8125rem);
+  font-weight: 500;
+  color: var(--text-primary, #111827);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.stock-filter-btn:hover {
+  border-color: var(--border-strong, #d1d5db);
+  background-color: var(--bg-surface, #f9fafb);
+}
+
+.stock-filter-btn.has-active {
+  border-color: var(--primary, #16a34a);
+  color: var(--primary, #16a34a);
+  background-color: var(--primary-subtle, #f0fdf4);
+}
+
+.stock-filter-icon {
+  color: var(--text-secondary, #6b7280);
+}
+
+.stock-filter-btn.has-active .stock-filter-icon {
+  color: var(--primary, #16a34a);
+}
+
+.filter-active-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--primary, #16a34a);
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile & Tablet Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .stock-filter-bar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .stock-filter-bar-left {
+    min-width: 0;
+  }
+
+  .stock-date-picker {
+    display: none; /* In mobile (Image 2), only Search and Filter button are in the controls bar! */
+  }
+}
