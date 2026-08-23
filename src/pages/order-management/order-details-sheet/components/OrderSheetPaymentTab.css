@@ -1,0 +1,74 @@
+/* OrderSheetPaymentTab Styles */
+.order-sheet-title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sheet-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sheet-icon-badge--blue {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.sheet-icon-badge--purple {
+  background-color: #faf5ff;
+  color: #9333ea;
+}
+
+.order-sheet-payment-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84rem;
+}
+
+.order-sheet-pay-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #4b5563;
+}
+
+.order-sheet-pay-row--discount {
+  color: #16a34a;
+}
+
+.order-sheet-pay-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 4px 0;
+}
+
+.order-sheet-pay-row--total {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.order-sheet-pay-method-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pay-method-subtext {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.order-sheet-pay-method-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

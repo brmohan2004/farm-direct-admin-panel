@@ -1,0 +1,115 @@
+/* ConsumerSheetOverviewTab Styles */
+.consumer-sheet-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.consumer-sheet-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.consumer-sheet-section-title {
+  margin: 0 0 12px 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.consumer-sheet-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sheet-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.84rem;
+}
+
+.sheet-field-lbl {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.sheet-field-val {
+  color: #111827;
+  font-weight: 500;
+  text-align: right;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.consumer-sheet-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.consumer-sheet-link-btn {
+  background: none;
+  border: none;
+  color: #16a34a;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.consumer-sheet-recent-orders {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sheet-recent-order-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+  background-color: #fafafa;
+}
+
+.sheet-order-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sheet-order-no {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sheet-order-date {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.sheet-order-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sheet-order-amount {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sheet-chevron {
+  color: #9ca3af;
+}

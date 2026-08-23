@@ -60,6 +60,10 @@
   transition: background-color var(--transition-fast, 150ms ease);
 }
 
+.products-table-row.clickable-row {
+  cursor: pointer;
+}
+
 .products-table-row:hover {
   background-color: var(--bg-surface, #f9fafb);
 }

@@ -1,0 +1,97 @@
+/* ProductStockHistoryCard Styles */
+.product-stock-history-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.header-with-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.history-view-all-btn {
+  background: none;
+  border: none;
+  color: #16a34a;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.history-timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+}
+
+.history-icon-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.circle-added {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.circle-used {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.history-item-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.history-item-title {
+  font-weight: 600;
+  color: #111827;
+}
+
+.history-item-time {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.history-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.history-change-val {
+  font-weight: 700;
+}
+
+.val-green { color: #16a34a; }
+.val-red { color: #dc2626; }
+
+.history-user-tag {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}

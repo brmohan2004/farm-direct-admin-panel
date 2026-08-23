@@ -1,0 +1,122 @@
+.transactions-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md, 12px);
+  width: 100%;
+}
+
+.trans-stat-card {
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 12px);
+  padding: 14px 8px;
+  min-height: 125px;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  gap: 4px;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.trans-stat-card:hover {
+  border-color: var(--border-strong, #d1d5db);
+  box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.07));
+  transform: translateY(-1px);
+}
+
+.trans-stat-icon-bg {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-bg--green {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.icon-bg--blue {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.icon-bg--orange {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.icon-bg--purple {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.trans-stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary, #4b5563);
+  line-height: 1.2;
+}
+
+.trans-stat-value {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 1px 0;
+  line-height: 1.1;
+}
+
+.trans-stat-subtext {
+  font-size: 10px;
+  color: var(--text-muted, #9ca3af);
+  line-height: 1.1;
+}
+
+/* Tablet screen adjustments (641px to 1024px) */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .transactions-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* Mobile Screen Styles (max-width: 640px) - Single row 4-card layout matching Dashboard page */
+@media (max-width: 640px) {
+  .transactions-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+
+  .trans-stat-card {
+    padding: 10px 3px;
+    min-height: 112px;
+    border-radius: 10px;
+    gap: 2px;
+  }
+
+  .trans-stat-icon-bg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .trans-stat-label {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .trans-stat-value {
+    font-size: 12.5px;
+    margin: 1px 0;
+  }
+
+  .trans-stat-subtext {
+    font-size: 8px;
+  }
+}

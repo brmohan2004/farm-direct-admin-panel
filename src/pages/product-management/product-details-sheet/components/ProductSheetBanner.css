@@ -1,0 +1,87 @@
+/* ProductSheetBanner Styles */
+.product-sheet-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.sheet-banner-img-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.sheet-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sheet-banner-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-banner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.sheet-banner-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sheet-banner-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sheet-banner-category {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.sheet-banner-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sheet-banner-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.organic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #16a34a;
+  background-color: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid #bbf7d0;
+}

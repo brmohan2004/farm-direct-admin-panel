@@ -370,6 +370,22 @@ img, video, svg {
   .user-name {
     display: none;
   }
+
+  /* Hide page title (h1) and description (p/subtitle) from page content headers on mobile */
+  .transactions-header-left,
+  .consumers-header-text,
+  .orders-header-text,
+  .products-header-title-group,
+  .categories-header-info,
+  .add-product-header,
+  .stock-inbox-header-title-group,
+  .farmer-requests-header-text,
+  .farmers-header-text,
+  .page-header-text,
+  .page-header-title-group,
+  .mobile-hide-title {
+    display: none !important;
+  }
 }
 
 /* Hide Common Header & Bottom Navigation on Mobile for Farmer Details Page */

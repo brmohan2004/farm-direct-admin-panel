@@ -1,0 +1,25 @@
+.copy-button-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm, 4px);
+  color: var(--text-muted, #9ca3af);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.copy-button-root:hover {
+  background-color: var(--bg-hover, #f3f4f6);
+  color: var(--text-primary, #111827);
+}
+
+.copy-button-root.copied {
+  color: var(--primary, #16a34a);
+}
+
+.copy-icon-success {
+  color: var(--primary, #16a34a);
+}

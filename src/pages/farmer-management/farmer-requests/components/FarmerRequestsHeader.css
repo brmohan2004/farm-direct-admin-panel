@@ -59,13 +59,14 @@
 }
 
 @media (max-width: 640px) {
+  .farmer-requests-header-text {
+    display: none !important;
+  }
+
   .farmer-requests-header {
     flex-direction: row;
     align-items: center;
-  }
-  
-  .farmer-requests-title {
-    font-size: 1.35rem;
+    justify-content: flex-end;
   }
 
   .farmer-requests-export-btn {

@@ -1,0 +1,38 @@
+/* ConsumerSheetTabs Styles */
+.consumer-sheet-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.consumer-sheet-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.consumer-sheet-tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 150ms ease;
+}
+
+.consumer-sheet-tab-btn:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+.consumer-sheet-tab-btn.active {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  font-weight: 700;
+}

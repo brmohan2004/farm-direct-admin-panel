@@ -48,7 +48,13 @@ const ProductsCards = ({
   return (
     <div className="products-cards-mobile-list">
       {products.map((item) => (
-        <div key={item.id} className="product-mobile-card">
+        <div
+          key={item.id}
+          className="product-mobile-card"
+          onClick={() => onViewDetails && onViewDetails(item)}
+          role="button"
+          tabIndex={0}
+        >
           {/* Card Image Thumbnail */}
           <img
             src={item.image}
@@ -80,7 +86,8 @@ const ProductsCards = ({
                   <button
                     type="button"
                     className="dropdown-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuId(null);
                       onViewDetails && onViewDetails(item);
                     }}
@@ -92,7 +99,8 @@ const ProductsCards = ({
                   <button
                     type="button"
                     className="dropdown-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuId(null);
                       onEditProduct && onEditProduct(item);
                     }}
@@ -104,7 +112,8 @@ const ProductsCards = ({
                   <button
                     type="button"
                     className="dropdown-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuId(null);
                       onUpdateStock && onUpdateStock(item);
                     }}
@@ -116,7 +125,8 @@ const ProductsCards = ({
                   <button
                     type="button"
                     className="dropdown-item delete-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveMenuId(null);
                       onDeleteProduct && onDeleteProduct(item);
                     }}

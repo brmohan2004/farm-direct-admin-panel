@@ -1,0 +1,136 @@
+/* ConsumerSheetHeader Styles */
+.consumer-sheet-profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.consumer-sheet-profile-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.consumer-sheet-profile-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.consumer-sheet-name-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.consumer-sheet-name {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.consumer-sheet-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sheet-contact-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: #4b5563;
+}
+
+.sheet-icon {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.consumer-sheet-more-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.consumer-sheet-more-btn:hover {
+  background-color: #f3f4f6;
+}
+
+/* 4 Metric Badges Grid */
+.consumer-sheet-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .consumer-sheet-metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.sheet-metric-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  gap: 2px;
+}
+
+.sheet-metric-box--green {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+}
+
+.sheet-metric-box--blue {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+}
+
+.sheet-metric-box--purple {
+  background-color: #faf5ff;
+  border: 1px solid #e9d5ff;
+  color: #9333ea;
+}
+
+.sheet-metric-box--orange {
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #ea580c;
+}
+
+.sheet-metric-icon {
+  margin-bottom: 2px;
+}
+
+.sheet-metric-val {
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.sheet-metric-lbl {
+  font-size: 0.72rem;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+}

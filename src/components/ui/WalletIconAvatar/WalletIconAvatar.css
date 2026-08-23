@@ -1,0 +1,63 @@
+.wallet-avatar-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md, 10px);
+  flex-shrink: 0;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.wallet-avatar--sm {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.wallet-avatar--md {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+}
+
+.wallet-avatar--lg {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+}
+
+/* Variants */
+.wallet-avatar--success {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.wallet-avatar--info {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.wallet-avatar--purple {
+  background-color: #faf5ff;
+  color: #9333ea;
+  border: 1px solid #e9d5ff;
+}
+
+.wallet-avatar--orange {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #ffedd5;
+}
+
+.wallet-avatar--warning {
+  background-color: #fefce8;
+  color: #ca8a04;
+  border: 1px solid #fef08a;
+}
+
+.wallet-avatar--danger {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}

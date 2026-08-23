@@ -1,0 +1,47 @@
+/* PaymentSheetHeader Styles */
+.pay-sheet-order-top-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.pay-sheet-order-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pay-sheet-order-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pay-sheet-order-no {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.pay-sheet-txn-no {
+  font-size: 0.78rem;
+  color: #6b7280;
+  font-family: monospace;
+}
+
+.pay-sheet-order-right {
+  display: flex;
+  align-items: center;
+}
+
+.pay-sheet-main-amount {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #16a34a;
+}

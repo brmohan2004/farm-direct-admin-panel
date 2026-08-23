@@ -1,0 +1,18 @@
+/* OrdersPage Component Styles */
+.orders-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--page-padding-y, 24px) var(--page-padding-x, 32px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .orders-page-container {
+    padding: var(--space-sm, 14px);
+    gap: var(--space-sm, 14px);
+  }
+}

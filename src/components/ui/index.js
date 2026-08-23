@@ -5,3 +5,8 @@ export { default as Modal } from './Modal/Modal';
 export { default as DateRangePicker } from './DateRangePicker/DateRangePicker';
 export { default as CategorySelectDropdown } from './CategorySelectDropdown/CategorySelectDropdown';
 export { default as IconInput } from './IconInput/IconInput';
+export { default as CategoryIconAvatar } from './CategoryIconAvatar/CategoryIconAvatar';
+export { default as OrderIconAvatar } from './OrderIconAvatar/OrderIconAvatar';
+export { default as UserAvatar } from './UserAvatar/UserAvatar';
+export { default as CopyButton } from './CopyButton/CopyButton';
+export { default as WalletIconAvatar } from './WalletIconAvatar/WalletIconAvatar';

@@ -1,0 +1,93 @@
+/* FarmerSheetActivityTab Styles */
+.farmer-sheet-activity-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  padding-left: 6px;
+}
+
+.activity-timeline::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 17px;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-icon-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-icon-box.green {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.timeline-icon-box.blue {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.timeline-icon-box.orange {
+  background-color: #d97706;
+  color: #ffffff;
+}
+
+.timeline-content {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.timeline-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.timeline-date {
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+
+.timeline-desc {
+  font-size: 11.5px;
+  color: #475569;
+  margin: 0;
+}

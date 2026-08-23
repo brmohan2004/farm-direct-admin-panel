@@ -1,0 +1,38 @@
+/* CategoriesPage Styles */
+.categories-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 20px);
+  padding: var(--page-padding-y, 24px) var(--page-padding-x, 32px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.categories-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  width: 100%;
+}
+
+/* Fluid responsive views */
+.categories-desktop-view {
+  display: block;
+  width: 100%;
+}
+
+.categories-mobile-view {
+  display: none;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .categories-desktop-view {
+    display: none;
+  }
+
+  .categories-mobile-view {
+    display: block;
+  }
+}

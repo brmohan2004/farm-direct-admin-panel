@@ -17,22 +17,22 @@ import {
   FarmerRequestsPage,
   FarmerVerificationPage,
   FarmersPage,
-  FarmerDetailsPage,
+  FarmerDetailsSheet,
   StockInboxPage,
   StockRequestDetailsPage,
   InventoryPage,
   ProductsPage,
   AddProductPage,
-  ProductDetailsPage,
+  ProductDetailsSheet,
   CategoriesPage,
   ConsumersPage,
-  ConsumerDetailsPage,
+  ConsumerDetailsSheet,
   OrdersPage,
-  OrderDetailsPage,
+  OrderDetailsSheet,
   PaymentsPage,
-  PaymentDetailsPage,
+  PaymentDetailsSheet,
   PayoutsPage,
-  PayoutDetailsPage,
+  PayoutDetailsSheet,
   NotificationsPage,
   SettingsPage
 } from './pages';
@@ -57,9 +57,9 @@ export const AppRoutes = () => {
           <Route path="/farmer-management/requests" element={<FarmerRequestsPage />} />
           <Route path="/farmer-management/verification" element={<FarmerVerificationPage />} />
           <Route path="/farmer-management/farmers" element={<FarmersPage />} />
-          <Route path="/farmer-management/farmers/:id" element={<FarmerDetailsPage />} />
-          <Route path="/farmer-management/farmer-details" element={<FarmerDetailsPage />} />
-          <Route path="/farmer-management/farmer-details/:id" element={<FarmerDetailsPage />} />
+          <Route path="/farmer-management/farmers/:id" element={<FarmerDetailsSheet isOpen={true} />} />
+          <Route path="/farmer-management/farmer-details" element={<FarmerDetailsSheet isOpen={true} />} />
+          <Route path="/farmer-management/farmer-details/:id" element={<FarmerDetailsSheet isOpen={true} />} />
           
           {/* Stock Management */}
           <Route path="/stock-management/inbox" element={<StockInboxPage />} />
@@ -69,25 +69,32 @@ export const AppRoutes = () => {
           {/* Product Management */}
           <Route path="/product-management/products" element={<ProductsPage />} />
           <Route path="/product-management/add" element={<AddProductPage />} />
-          <Route path="/product-management/products/:id" element={<ProductDetailsPage />} />
+          <Route path="/product-management/products/:id" element={<ProductDetailsSheet isOpen={true} />} />
           <Route path="/product-management/categories" element={<CategoriesPage />} />
 
           {/* Consumer Management */}
+          <Route path="/consumers" element={<Navigate to="/consumer-management/consumers" replace />} />
           <Route path="/consumer-management/consumers" element={<ConsumersPage />} />
-          <Route path="/consumer-management/consumers/:id" element={<ConsumerDetailsPage />} />
+          <Route path="/consumer-management/consumers/:id" element={<ConsumerDetailsSheet isOpen={true} />} />
+          <Route path="/consumer-management/consumer-details" element={<Navigate to="/consumer-management/consumers" replace />} />
+          <Route path="/consumer-details" element={<Navigate to="/consumer-management/consumers" replace />} />
+          <Route path="/consumer-details/:id" element={<ConsumerDetailsSheet isOpen={true} />} />
 
           {/* Order Management */}
+          <Route path="/orders" element={<Navigate to="/order-management/orders" replace />} />
           <Route path="/order-management/orders" element={<OrdersPage />} />
-          <Route path="/order-management/orders/:id" element={<OrderDetailsPage />} />
+          <Route path="/order-management/orders/:id" element={<OrderDetailsSheet isOpen={true} />} />
+          <Route path="/order-details" element={<Navigate to="/order-management/orders" replace />} />
+          <Route path="/order-details/:id" element={<OrderDetailsSheet isOpen={true} />} />
 
           {/* Payment / Transactions Management */}
           <Route path="/transactions" element={<Navigate to="/payment-management/payments" replace />} />
           <Route path="/payment-management/payments" element={<PaymentsPage />} />
-          <Route path="/payment-management/payments/:id" element={<PaymentDetailsPage />} />
+          <Route path="/payment-management/payments/:id" element={<PaymentDetailsSheet isOpen={true} />} />
 
           {/* Farmer Payouts */}
           <Route path="/farmer-payouts/payouts" element={<PayoutsPage />} />
-          <Route path="/farmer-payouts/payouts/:id" element={<PayoutDetailsPage />} />
+          <Route path="/farmer-payouts/payouts/:id" element={<PayoutDetailsSheet isOpen={true} />} />
 
           {/* Notifications & Settings */}
           <Route path="/notifications" element={<NotificationsPage />} />

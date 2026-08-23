@@ -1,0 +1,119 @@
+/* OrdersCards Component Styles */
+.orders-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.orders-card-item {
+  position: relative;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 12px);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.orders-card-item:hover,
+.orders-card-item:active {
+  border-color: var(--primary-border, #bbf7d0);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.07));
+}
+
+.orders-card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  padding-right: 20px; /* space for absolute chevron */
+}
+
+.orders-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.orders-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.orders-card-ord-number {
+  font-size: var(--font-size-base, 0.95rem);
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  font-family: var(--font-heading, sans-serif);
+}
+
+.orders-card-customer-name {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #4b5563);
+  font-weight: 500;
+}
+
+.orders-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.orders-card-amount {
+  font-size: var(--font-size-base, 1rem);
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+}
+
+.orders-card-chevron {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #9ca3af);
+}
+
+.orders-card-details-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+  border-top: 1px dashed var(--border-light, #f3f4f6);
+}
+
+.orders-card-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.orders-card-detail-icon {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.orders-cards-empty {
+  padding: 30px var(--space-md);
+  text-align: center;
+  color: var(--text-muted, #9ca3af);
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+}
+
+/* Hide card stack on desktop & tablet screens */
+@media (min-width: 641px) {
+  .orders-cards-container {
+    display: none;
+  }
+}

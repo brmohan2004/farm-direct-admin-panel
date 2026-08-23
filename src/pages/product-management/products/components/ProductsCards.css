@@ -26,11 +26,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-fast, 150ms ease);
   position: relative;
+  cursor: pointer;
 }
 
 .product-mobile-card:hover {
   border-color: var(--border-strong, #d1d5db);
   box-shadow: var(--shadow-sm);
+  background-color: var(--bg-surface, #fafafa);
 }
 
 .product-mobile-img {

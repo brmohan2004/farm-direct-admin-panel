@@ -15,7 +15,7 @@
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .header-logo-wrap {
@@ -29,6 +29,7 @@
   width: 26px;
   height: 26px;
   color: var(--primary);
+  flex-shrink: 0;
 }
 
 .header-logo-text {
@@ -48,6 +49,18 @@
   font-size: 10px;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+.header-mobile-page-name {
+  display: none;
+  font-family: var(--font-heading, sans-serif);
+  font-size: var(--font-size-base, 0.95rem);
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 .header-center {
@@ -80,7 +93,12 @@
     display: none;
   }
 
-  .desktop-only-action {
+  .desktop-only-action,
+  .desktop-only-brand {
     display: none !important;
+  }
+
+  .header-mobile-page-name {
+    display: block !important;
   }
 }

@@ -1,0 +1,94 @@
+/* OrdersHeader Component Styles */
+.orders-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md, 16px);
+  margin-bottom: var(--space-xs, 8px);
+}
+
+.orders-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orders-title {
+  margin: 0;
+  font-size: var(--font-size-3xl, 1.875rem);
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  letter-spacing: -0.02em;
+}
+
+.orders-subtitle {
+  margin: 0;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #4b5563);
+}
+
+.orders-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.orders-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md, 10px);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.orders-action-btn--secondary {
+  background-color: #ffffff;
+  color: var(--text-primary, #111827);
+  border: 1px solid var(--border-default, #e5e7eb);
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+.orders-action-btn--secondary:hover {
+  background-color: var(--bg-hover, #f3f4f6);
+  border-color: var(--border-strong, #d1d5db);
+}
+
+.orders-action-btn--primary {
+  background-color: var(--primary, #16a34a);
+  color: #ffffff;
+  border: 1px solid var(--primary, #16a34a);
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+.orders-action-btn--primary:hover {
+  background-color: var(--primary-hover, #15803d);
+  border-color: var(--primary-hover, #15803d);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .orders-header-text {
+    display: none !important;
+  }
+
+  .orders-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
+
+  .orders-header-actions {
+    margin-top: 0;
+  }
+
+  /* On mobile header, show only the main filter button in header, hide export & sort in header top */
+  .orders-header-actions .orders-action-btn--secondary {
+    display: none;
+  }
+}

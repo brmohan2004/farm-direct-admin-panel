@@ -1,0 +1,51 @@
+/* OrderIconAvatar Component Styles */
+.order-icon-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md, 10px);
+  flex-shrink: 0;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+/* Sizes */
+.order-icon-avatar--sm {
+  width: 32px;
+  height: 32px;
+}
+
+.order-icon-avatar--md {
+  width: 40px;
+  height: 40px;
+}
+
+.order-icon-avatar--lg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Variations */
+.order-icon-avatar--delivered {
+  background-color: #e6f4ea;
+  color: #16a34a;
+}
+
+.order-icon-avatar--pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.order-icon-avatar--shipped {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.order-icon-avatar--confirmed {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.order-icon-avatar--cancelled {
+  background-color: #fee2e2;
+  color: #dc2626;
+}

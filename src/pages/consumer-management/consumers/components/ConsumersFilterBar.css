@@ -1,0 +1,91 @@
+/* ConsumersFilterBar Component Styles */
+.consumers-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md, 16px);
+  width: 100%;
+}
+
+.consumers-search-input-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.consumers-search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted, #9ca3af);
+  pointer-events: none;
+}
+
+.consumers-search-input {
+  width: 100%;
+  padding: 10px 14px 10px 42px;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-primary, #111827);
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  outline: none;
+  transition: border-color var(--transition-fast, 150ms ease), box-shadow var(--transition-fast, 150ms ease);
+}
+
+.consumers-search-input:focus {
+  border-color: var(--primary, #16a34a);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.consumers-search-input::placeholder {
+  color: var(--text-muted, #9ca3af);
+}
+
+.consumers-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consumers-bar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  color: var(--text-primary, #111827);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.consumers-bar-btn:hover {
+  background-color: var(--bg-hover, #f3f4f6);
+  border-color: var(--border-strong, #d1d5db);
+}
+
+@media (max-width: 640px) {
+  .consumers-filter-bar {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .consumers-search-input-wrapper {
+    max-width: 100%;
+  }
+
+  .consumers-bar-btn span {
+    display: none;
+  }
+
+  .consumers-bar-btn {
+    padding: 9px 12px;
+  }
+}

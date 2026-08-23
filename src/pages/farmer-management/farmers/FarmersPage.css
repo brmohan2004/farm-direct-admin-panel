@@ -2,7 +2,7 @@
 .approved-farmers-page-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -10,6 +10,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .farmers-header-text-group {
+    display: none !important; /* Silenced on mobile screen as dynamic top nav header handles page title */
+  }
+
+  .farmers-page-header {
+    justify-content: flex-end;
+  }
 }
 
 .farmers-title {
@@ -24,6 +36,41 @@
   margin: 4px 0 0 0;
   font-size: 0.875rem;
   color: #6b7280;
+}
+
+/* View Switcher Toggle Bar */
+.farmers-view-switcher {
+  display: flex;
+  align-items: center;
+  background-color: #f1f5f9;
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.view-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.view-switch-btn:hover {
+  color: #0f172a;
+}
+
+.view-switch-btn.active {
+  background-color: #ffffff;
+  color: #16a34a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .farmers-search-bar {

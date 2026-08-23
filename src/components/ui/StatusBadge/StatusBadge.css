@@ -45,20 +45,42 @@
   background-color: #f59e0b;
 }
 
+.status-badge--confirmed {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+.status-badge--confirmed .status-badge-dot {
+  background-color: #3b82f6;
+}
+
+.status-badge--shipped {
+  background-color: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+.status-badge--shipped .status-badge-dot {
+  background-color: #0ea5e9;
+}
+
+.status-badge--delivered,
 .status-badge--approved {
   background-color: #f0fdf4;
   color: #16a34a;
   border: 1px solid #bbf7d0;
 }
+.status-badge--delivered .status-badge-dot,
 .status-badge--approved .status-badge-dot {
   background-color: #22c55e;
 }
 
+.status-badge--cancelled,
 .status-badge--rejected {
   background-color: #fef2f2;
   color: #dc2626;
   border: 1px solid #fecaca;
 }
+.status-badge--cancelled .status-badge-dot,
 .status-badge--rejected .status-badge-dot {
   background-color: #ef4444;
 }
@@ -70,4 +92,52 @@
 }
 .status-badge--hold .status-badge-dot {
   background-color: #94a3b8;
+}
+
+.status-badge--active {
+  background-color: #e6f4ea;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  font-weight: 600;
+}
+.status-badge--active .status-badge-dot {
+  background-color: #16a34a;
+}
+
+.status-badge--inactive {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+}
+.status-badge--inactive .status-badge-dot {
+  background-color: #9ca3af;
+}
+
+/* Payment Method Badges */
+.status-badge--cod {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  font-weight: 600;
+}
+
+.status-badge--upi {
+  background-color: #faf5ff;
+  color: #9333ea;
+  border: 1px solid #e9d5ff;
+  font-weight: 600;
+}
+
+.status-badge--card {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  font-weight: 600;
+}
+
+.status-badge--paid {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  font-weight: 500;
 }

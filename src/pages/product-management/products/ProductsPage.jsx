@@ -26,6 +26,7 @@ import {
   ProductsFilterModal,
   ProductDetailsModal
 } from './components';
+import { ProductDetailsSheet } from '../product-details-sheet';
 
 // Global UI Components
 import Pagination from '../../../components/ui/Pagination/Pagination';
@@ -35,146 +36,230 @@ import './ProductsPage.css';
 const INITIAL_PRODUCTS = [
   {
     id: 'prod-1',
+    productId: '#PROD12345',
     name: 'Vegetables Mix',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '250 kg',
+    reorderLevel: '50 kg',
+    purchasePrice: '25',
+    sellingPrice: '40',
     totalValue: '6,250',
     status: 'In Stock',
+    createdDate: '10 May 2024, 09:15 AM',
     updatedDate: '12 May 2024',
     updatedTime: '10:20 AM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'A fresh mix of handpicked seasonal vegetables.',
     image: vegMixImg
   },
   {
     id: 'prod-2',
+    productId: '#PROD12346',
     name: 'Apples',
     category: 'Fruits',
     unit: 'kg',
     quantity: '180 kg',
+    reorderLevel: '40 kg',
+    purchasePrice: '35',
+    sellingPrice: '50',
     totalValue: '9,000',
     status: 'In Stock',
+    createdDate: '11 May 2024, 08:30 AM',
     updatedDate: '12 May 2024',
     updatedTime: '09:15 AM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Fresh crisp red apples direct from regional orchards.',
     image: fruitsMixImg
   },
   {
     id: 'prod-3',
+    productId: '#PROD12347',
     name: 'Rice (Raw)',
     category: 'Grains',
     unit: 'kg',
     quantity: '500 kg',
+    reorderLevel: '100 kg',
+    purchasePrice: '22',
+    sellingPrice: '30',
     totalValue: '15,000',
     status: 'In Stock',
+    createdDate: '09 May 2024, 02:15 PM',
     updatedDate: '11 May 2024',
     updatedTime: '07:45 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Premium quality polished raw rice grains.',
     image: grainsImg
   },
   {
     id: 'prod-4',
+    productId: '#PROD12348',
     name: 'Toor Dal',
     category: 'Pulses',
     unit: 'kg',
     quantity: '120 kg',
+    reorderLevel: '150 kg',
+    purchasePrice: '50',
+    sellingPrice: '60',
     totalValue: '7,200',
     status: 'Low Stock',
+    createdDate: '08 May 2024, 11:00 AM',
     updatedDate: '11 May 2024',
     updatedTime: '05:30 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'High-protein unpolished yellow pigeon peas.',
     image: pulsesImg
   },
   {
     id: 'prod-5',
+    productId: '#PROD12349',
     name: 'Potatoes',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '80 kg',
+    reorderLevel: '100 kg',
+    purchasePrice: '15',
+    sellingPrice: '20',
     totalValue: '1,600',
     status: 'Out of Stock',
+    createdDate: '07 May 2024, 04:00 PM',
     updatedDate: '10 May 2024',
     updatedTime: '04:25 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Farm-fresh organic potatoes harvested locally.',
     image: potatoesImg
   },
   {
     id: 'prod-6',
+    productId: '#PROD12350',
     name: 'Carrots',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '320 kg',
+    reorderLevel: '60 kg',
+    purchasePrice: '28',
+    sellingPrice: '35',
     totalValue: '11,200',
     status: 'In Stock',
+    createdDate: '06 May 2024, 01:20 PM',
     updatedDate: '10 May 2024',
     updatedTime: '02:10 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Sweet and crunchy orange carrots.',
     image: carrotsImg
   },
   {
     id: 'prod-7',
+    productId: '#PROD12351',
     name: 'Cauliflower',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '140 kg',
+    reorderLevel: '150 kg',
+    purchasePrice: '20',
+    sellingPrice: '28',
     totalValue: '3,920',
     status: 'Low Stock',
+    createdDate: '05 May 2024, 10:45 AM',
     updatedDate: '10 May 2024',
     updatedTime: '11:45 AM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Fresh white cauliflower heads.',
     image: cauliflowerImg
   },
   {
     id: 'prod-8',
+    productId: '#PROD12352',
     name: 'Green Beans',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '210 kg',
+    reorderLevel: '50 kg',
+    purchasePrice: '35',
+    sellingPrice: '45',
     totalValue: '9,450',
     status: 'In Stock',
+    createdDate: '04 May 2024, 03:30 PM',
     updatedDate: '09 May 2024',
     updatedTime: '04:00 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Tender French green beans harvested daily.',
     image: greenBeansImg
   },
   {
     id: 'prod-9',
+    productId: '#PROD12353',
     name: 'Bell Peppers',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '95 kg',
+    reorderLevel: '100 kg',
+    purchasePrice: '45',
+    sellingPrice: '55',
     totalValue: '5,225',
     status: 'Low Stock',
+    createdDate: '03 May 2024, 09:10 AM',
     updatedDate: '09 May 2024',
     updatedTime: '01:15 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Vibrant green capsicum bell peppers.',
     image: peppersImg
   },
   {
     id: 'prod-10',
+    productId: '#PROD12354',
     name: 'Leafy Spinach',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '160 kg',
+    reorderLevel: '40 kg',
+    purchasePrice: '18',
+    sellingPrice: '24',
     totalValue: '3,840',
     status: 'In Stock',
+    createdDate: '02 May 2024, 08:00 AM',
     updatedDate: '09 May 2024',
     updatedTime: '09:30 AM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Fresh organic leafy palak spinach bunches.',
     image: spinachImg
   },
   {
     id: 'prod-11',
+    productId: '#PROD12355',
     name: 'Red Onions',
     category: 'Vegetables',
     unit: 'kg',
     quantity: '450 kg',
+    reorderLevel: '80 kg',
+    purchasePrice: '20',
+    sellingPrice: '26',
     totalValue: '11,700',
     status: 'In Stock',
+    createdDate: '01 May 2024, 02:00 PM',
     updatedDate: '08 May 2024',
     updatedTime: '05:20 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'High quality dried red onions.',
     image: onionsImg
   },
   {
     id: 'prod-12',
+    productId: '#PROD12356',
     name: 'Finger Millets (Ragi)',
     category: 'Millets',
     unit: 'kg',
     quantity: '280 kg',
+    reorderLevel: '50 kg',
+    purchasePrice: '42',
+    sellingPrice: '52',
     totalValue: '14,560',
     status: 'In Stock',
+    createdDate: '30 Apr 2024, 11:30 AM',
     updatedDate: '08 May 2024',
     updatedTime: '02:00 PM',
+    addedBy: 'Admin (Super Admin)',
+    description: 'Nutritious organic finger millet grains.',
     image: milletsImg
   }
 ];
@@ -187,9 +272,10 @@ const ProductsPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Modal States
+  // Modal & Sheet States
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [isDetailsSheetOpen, setIsDetailsSheetOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [modalMode, setModalMode] = useState('view');
 
@@ -203,7 +289,7 @@ const ProductsPage = () => {
   // Toast Notification State
   const [toastMessage, setToastMessage] = useState(null);
 
-  // Desktop Table Pagination (5 per page matches "Showing 1 to 5 of 342 items" in screenshot!)
+  // Desktop Table Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
@@ -285,12 +371,10 @@ const ProductsPage = () => {
     if (isLoadingMoreMobile || !hasMoreMobile) return;
     setIsLoadingMoreMobile(true);
     setTimeout(() => {
-      setMobileVisibleCount((prev) => Math.min(prev + 4, filteredRequestsLength));
+      setMobileVisibleCount((prev) => Math.min(prev + 4, filteredProducts.length));
       setIsLoadingMoreMobile(false);
     }, 400);
   };
-
-  const filteredRequestsLength = filteredProducts.length;
 
   // Handlers
   const handleAddStock = () => {
@@ -299,8 +383,7 @@ const ProductsPage = () => {
 
   const handleViewDetails = (item) => {
     setSelectedProduct(item);
-    setModalMode('view');
-    setIsDetailsModalOpen(true);
+    setIsDetailsSheetOpen(true);
   };
 
   const handleEditProduct = (item) => {
@@ -427,7 +510,19 @@ const ProductsPage = () => {
         onResetFilters={() => setFilterCriteria({ category: 'All', status: 'All', priceRange: 'All' })}
       />
 
-      {/* 8. Product Details & Edit Modal */}
+      {/* 8. Product Details Sheet (Mobile Slide-Up Sheet & Desktop Popup) */}
+      <ProductDetailsSheet
+        product={selectedProduct}
+        isOpen={isDetailsSheetOpen}
+        onClose={() => {
+          setIsDetailsSheetOpen(false);
+          setSelectedProduct(null);
+        }}
+        onEditProduct={handleSaveProduct}
+        onDeleteProduct={handleDeleteProduct}
+      />
+
+      {/* 9. Quick Edit Modal */}
       <ProductDetailsModal
         product={selectedProduct}
         isOpen={isDetailsModalOpen}

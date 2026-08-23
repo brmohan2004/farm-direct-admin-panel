@@ -1,0 +1,255 @@
+/* PayoutDetailsSheet Styles */
+.pwt-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  animation: fadeIn 200ms ease;
+}
+
+.pwt-sheet-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 92vh;
+  background-color: var(--bg-card, #ffffff);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+  .pwt-sheet-container {
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: scaleUp 200ms ease;
+  }
+}
+
+.pwt-sheet-handle-bar {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.pwt-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.pwt-sheet-nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-default, #f1f5f9);
+}
+
+.pwt-sheet-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #16a34a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pwt-sheet-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pwt-sheet-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.pwt-sheet-subtitle {
+  margin: 2px 0 0 0;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.pwt-sheet-body {
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.pwt-sheet-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.pwt-card-section-title {
+  margin: 0 0 12px 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.pwt-timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.pwt-timeline-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: #111827;
+}
+
+.step-circle-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-title {
+  flex: 1;
+}
+
+.step-time {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.pwt-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pwt-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+}
+
+.pwt-info-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pwt-icon-purple { color: #9333ea; }
+.pwt-icon-blue { color: #2563eb; }
+.pwt-icon-green { color: #16a34a; }
+.pwt-icon-orange { color: #ea580c; }
+
+.pwt-info-lbl {
+  color: #6b7280;
+}
+
+.pwt-info-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pwt-info-val {
+  color: #111827;
+}
+
+.pwt-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84rem;
+}
+
+.pwt-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pwt-sum-lbl { color: #4b5563; }
+.pwt-sum-val { color: #111827; }
+
+.pwt-summary-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 4px 0;
+}
+
+.pwt-summary-total {
+  font-size: 0.9375rem;
+}
+
+.pwt-sheet-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-default, #f1f5f9);
+  background-color: #ffffff;
+}
+
+.pwt-btn-download {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #16a34a;
+  border: none;
+  color: #ffffff;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: translate(-50%, -46%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}

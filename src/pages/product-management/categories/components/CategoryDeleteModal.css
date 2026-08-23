@@ -1,0 +1,75 @@
+/* CategoryDeleteModal Component Styles */
+.category-delete-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.category-delete-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fef2f2;
+  margin-bottom: 12px;
+}
+
+.category-delete-icon {
+  color: #ef4444;
+}
+
+.category-delete-heading {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 0 0 6px 0;
+}
+
+.category-delete-message {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: #4b5563;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.category-delete-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.delete-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.delete-btn-cancel {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.delete-btn-cancel:hover {
+  background-color: #f9fafb;
+}
+
+.delete-btn-confirm {
+  background-color: #ef4444;
+  border: none;
+  color: #ffffff;
+}
+
+.delete-btn-confirm:hover {
+  background-color: #dc2626;
+}

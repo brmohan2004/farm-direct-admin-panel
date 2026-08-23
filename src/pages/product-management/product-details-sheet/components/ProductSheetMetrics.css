@@ -1,0 +1,58 @@
+/* ProductSheetMetrics Styles */
+.product-sheet-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .product-sheet-metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.sheet-metric-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  gap: 2px;
+}
+
+.sheet-metric-card.green {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+}
+
+.sheet-metric-card.blue {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+}
+
+.sheet-metric-card.purple {
+  background-color: #faf5ff;
+  border: 1px solid #e9d5ff;
+  color: #9333ea;
+}
+
+.sheet-metric-card.orange {
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #ea580c;
+}
+
+.metric-val {
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.metric-lbl {
+  font-size: 0.72rem;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+}

@@ -1,0 +1,68 @@
+/* PayoutSheetHeader Styles */
+.pwt-sheet-top-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.pwt-top-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pwt-top-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pwt-lbl-sm {
+  font-size: 0.72rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.pwt-id-copy-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pwt-id {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.pwt-date {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.pwt-top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.pwt-amount-lbl {
+  font-size: 0.72rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.pwt-amount-val {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #16a34a;
+}

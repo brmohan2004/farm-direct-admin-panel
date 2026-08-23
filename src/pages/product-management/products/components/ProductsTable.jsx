@@ -59,7 +59,11 @@ const ProductsTable = ({
           </thead>
           <tbody>
             {products.map((item) => (
-              <tr key={item.id} className="products-table-row">
+              <tr
+                key={item.id}
+                className="products-table-row clickable-row"
+                onClick={() => onViewDetails && onViewDetails(item)}
+              >
                 {/* Product Thumbnail & Title */}
                 <td className="col-product">
                   <div className="product-title-cell">
@@ -106,12 +110,15 @@ const ProductsTable = ({
                 </td>
 
                 {/* Actions: Edit icon button + ⋮ menu */}
-                <td className="col-actions">
+                <td className="col-actions" onClick={(e) => e.stopPropagation()}>
                   <div className="actions-cell">
                     <button
                       type="button"
                       className="icon-action-btn edit-btn"
-                      onClick={() => onEditProduct && onEditProduct(item)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEditProduct && onEditProduct(item);
+                      }}
                       aria-label="Edit Product"
                       title="Edit Product"
                     >
@@ -133,7 +140,8 @@ const ProductsTable = ({
                           <button
                             type="button"
                             className="dropdown-item"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setActiveMenuId(null);
                               onViewDetails && onViewDetails(item);
                             }}
@@ -145,7 +153,8 @@ const ProductsTable = ({
                           <button
                             type="button"
                             className="dropdown-item"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setActiveMenuId(null);
                               onEditProduct && onEditProduct(item);
                             }}
@@ -157,7 +166,8 @@ const ProductsTable = ({
                           <button
                             type="button"
                             className="dropdown-item"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setActiveMenuId(null);
                               onUpdateStock && onUpdateStock(item);
                             }}
@@ -169,7 +179,8 @@ const ProductsTable = ({
                           <button
                             type="button"
                             className="dropdown-item delete-item"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setActiveMenuId(null);
                               onDeleteProduct && onDeleteProduct(item);
                             }}

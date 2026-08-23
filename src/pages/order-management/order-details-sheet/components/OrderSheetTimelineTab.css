@@ -1,0 +1,61 @@
+/* OrderSheetTimelineTab Styles */
+.order-sheet-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-default, #eaecf0);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.order-sheet-section-title {
+  margin: 0 0 12px 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.order-sheet-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.order-sheet-timeline-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: #6b7280;
+}
+
+.order-sheet-timeline-node--completed {
+  color: #111827;
+  font-weight: 600;
+}
+
+.order-sheet-node-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.order-sheet-timeline-node--completed .order-sheet-node-icon {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.order-sheet-node-label {
+  flex: 1;
+}
+
+.order-sheet-node-time {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}

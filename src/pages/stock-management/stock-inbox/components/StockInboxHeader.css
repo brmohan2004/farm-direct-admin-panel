@@ -29,15 +29,8 @@
 }
 
 @media (max-width: 640px) {
+  .stock-inbox-header-title-group,
   .stock-inbox-header {
-    margin-bottom: 2px;
-  }
-  
-  .stock-inbox-header-title {
-    font-size: 1.35rem;
-  }
-
-  .stock-inbox-header-subtitle {
-    font-size: 0.8125rem;
+    display: none !important;
   }
 }

@@ -1,0 +1,91 @@
+/* OrderSheetItemsTab Styles */
+.order-sheet-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.order-sheet-link-btn {
+  background: none;
+  border: none;
+  color: #16a34a;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.order-sheet-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-sheet-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.order-sheet-item-row:last-child {
+  border-bottom: none;
+}
+
+.order-sheet-item-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+}
+
+.order-sheet-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.order-sheet-item-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.order-sheet-item-weight {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.order-sheet-item-unit-price {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.order-sheet-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.order-sheet-item-qty {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.order-sheet-item-total {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.order-sheet-more-items {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: #6b7280;
+  text-align: center;
+  font-weight: 600;
+}

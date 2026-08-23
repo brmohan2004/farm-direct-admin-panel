@@ -11,6 +11,7 @@ const Pagination = ({
   totalPages = 5,
   totalItems = 48,
   itemsPerPage = 10,
+  itemLabel = 'items',
   onPageChange,
   onItemsPerPageChange
 }) => {
@@ -30,7 +31,7 @@ const Pagination = ({
       <div className="pagination-info">
         Showing <span className="pagination-info-bold">{startItem}</span> to{' '}
         <span className="pagination-info-bold">{endItem}</span> of{' '}
-        <span className="pagination-info-bold">{totalItems}</span> requests
+        <span className="pagination-info-bold">{totalItems}</span> {itemLabel}
       </div>
 
       <div className="pagination-controls">

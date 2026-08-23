@@ -1,0 +1,25 @@
+/* CategoriesSearch Component Styles */
+.categories-search-container {
+  width: 100%;
+  max-width: 320px;
+}
+
+.categories-search-input .search-input-field {
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius-md, 10px);
+  height: 44px;
+  font-size: var(--font-size-sm, 0.875rem);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.categories-search-input .search-input-field:focus {
+  border-color: var(--primary, #16a34a);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+@media (max-width: 640px) {
+  .categories-search-container {
+    max-width: 100%;
+  }
+}

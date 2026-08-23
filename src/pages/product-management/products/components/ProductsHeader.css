@@ -56,16 +56,13 @@
 }
 
 @media (max-width: 640px) {
+  .products-header-title-group {
+    display: none !important;
+  }
+
   .products-header {
-    align-items: flex-start;
-  }
-
-  .products-header-title {
-    font-size: 1.35rem;
-  }
-
-  .products-header-subtitle {
-    font-size: 0.8125rem;
+    justify-content: flex-end;
+    margin-bottom: 0;
   }
 
   .add-stock-btn {

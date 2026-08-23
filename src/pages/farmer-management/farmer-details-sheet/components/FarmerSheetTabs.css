@@ -1,0 +1,55 @@
+/* FarmerSheetTabs Styles */
+.farmer-sheet-tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-default, #f1f5f9);
+  scrollbar-width: none;
+}
+
+.farmer-sheet-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.farmer-sheet-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: #64748b;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.farmer-sheet-tab-btn:hover {
+  color: #0f172a;
+  background-color: #f8fafc;
+}
+
+.farmer-sheet-tab-btn.active {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border-color: #bbf7d0;
+}
+
+.farmer-sheet-tab-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  background-color: #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.farmer-sheet-tab-badge.active {
+  color: #15803d;
+  background-color: #dcfce7;
+}
