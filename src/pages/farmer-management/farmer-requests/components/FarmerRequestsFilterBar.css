@@ -1,0 +1,110 @@
+/* FarmerRequestsFilterBar Component Styles */
+.farmer-requests-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.farmer-requests-search-wrapper {
+  flex: 1;
+  min-width: 240px;
+}
+
+.filter-bar-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.filter-modal-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--border-default, #e5e7eb);
+  background-color: var(--bg-card, #ffffff);
+  color: var(--text-primary, #111827);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.filter-modal-trigger-btn:hover {
+  border-color: var(--border-strong, #d1d5db);
+  background-color: var(--bg-hover, #f9fafb);
+}
+
+.filter-modal-trigger-btn.has-active-filter {
+  border-color: var(--primary, #16a34a);
+  color: var(--primary, #16a34a);
+  background-color: var(--primary-subtle, #f0fdf4);
+}
+
+.active-filter-indicator {
+  width: 7px;
+  height: 7px;
+  background-color: var(--primary, #16a34a);
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.date-range-picker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--border-default, #e5e7eb);
+  background-color: var(--bg-card, #ffffff);
+  color: var(--text-secondary, #374151);
+  font-size: var(--font-size-xs, 0.8125rem);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.date-range-picker-btn:hover {
+  border-color: var(--border-strong, #d1d5db);
+  background-color: var(--bg-hover, #f9fafb);
+}
+
+.date-range-picker-btn .date-icon {
+  color: var(--text-muted, #9ca3af);
+}
+
+.date-range-picker-btn .chevron-icon {
+  color: var(--text-muted, #9ca3af);
+}
+
+@media (max-width: 768px) {
+  .date-range-picker-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .farmer-requests-filter-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .farmer-requests-search-wrapper {
+    flex: 1;
+    width: 100%;
+  }
+
+  .filter-modal-trigger-btn {
+    height: 40px;
+    padding: 0 12px;
+  }
+}

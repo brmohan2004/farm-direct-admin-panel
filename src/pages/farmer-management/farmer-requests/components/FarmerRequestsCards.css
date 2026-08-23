@@ -1,0 +1,350 @@
+/* FarmerRequestsCards Component Styles */
+.farmer-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Outer Card Container matching design image */
+.farmer-request-card {
+  background-color: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  transition: transform var(--transition-fast, 150ms ease), box-shadow var(--transition-fast, 150ms ease);
+}
+
+.farmer-request-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db;
+}
+
+/* Top Section: Avatar (Left), Info (Middle), Status/Date (Right) */
+.card-top-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Circular Avatar with Green Border Ring */
+.card-avatar-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid #bbf7d0;
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: #f9fafb;
+}
+
+.card-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Middle Info Column */
+.card-main-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.card-farmer-name {
+  margin: 0 0 2px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  font-family: var(--font-heading, sans-serif);
+  line-height: 1.25;
+}
+
+.info-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.icon-slate {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.icon-green {
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+/* Right Section: Status Badge, 3-dots Menu & Date Block */
+.card-right-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.card-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.status-pill--pending {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
+}
+
+.status-pill--approved {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.status-pill--rejected {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.card-more-btn {
+  background: none;
+  border: none;
+  padding: 2px;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-more-btn:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.card-date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+  font-size: 0.78rem;
+  color: #4b5563;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.time-subtext {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+/* Dropdown Menu Popover */
+.card-dropdown-menu {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 4px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.8125rem;
+  color: #111827;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card-dropdown-item:hover {
+  background-color: #f3f4f6;
+}
+
+.card-dropdown-item.text-green {
+  color: #16a34a;
+}
+
+/* Dashed Divider Line */
+.card-dashed-line {
+  border-top: 1px dashed #e5e7eb;
+  margin: 14px 0;
+  width: 100%;
+}
+
+/* Bottom Action Buttons (View Details / Approve) */
+.card-bottom-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn-card-outline {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #86efac;
+  background-color: #ffffff;
+  color: #15803d;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 150ms ease;
+}
+
+.btn-card-outline:hover {
+  background-color: #f0fdf4;
+  border-color: #16a34a;
+}
+
+.btn-card-solid {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #00872e;
+  background-color: #00872e;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 150ms ease;
+}
+
+.btn-card-solid:hover {
+  background-color: #007026;
+  border-color: #007026;
+}
+
+.farmer-cards-empty {
+  padding: 40px 16px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* Infinite Scroll Indicators */
+.infinite-scroll-sentinel {
+  padding: 16px 0 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.infinite-scroll-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  color: #16a34a;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.infinite-scroll-end {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.infinite-scroll-end .end-icon {
+  color: #16a34a;
+}
+
+@media (max-width: 480px) {
+  .card-avatar-ring {
+    width: 56px;
+    height: 56px;
+  }
+
+  .card-farmer-name {
+    font-size: 0.98rem;
+  }
+
+  .btn-card-outline,
+  .btn-card-solid {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+}

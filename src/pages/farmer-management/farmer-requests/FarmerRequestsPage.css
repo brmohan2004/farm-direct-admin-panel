@@ -1,0 +1,85 @@
+/* FarmerRequestsPage Component Styles */
+.farmer-requests-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--space-md, 16px);
+  position: relative;
+}
+
+/* Fluid responsive view switching */
+.view-desktop-tablet {
+  display: block;
+  width: 100%;
+}
+
+.view-mobile-cards {
+  display: none;
+  width: 100%;
+}
+
+.desktop-pagination-wrapper {
+  display: block;
+  width: 100%;
+}
+
+/* Toast Notification Floating Banner */
+.toast-notification-banner {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background-color: #111827;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-xs, 0.8125rem);
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: toastSlideIn 250ms ease-out forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 640px) {
+  .farmer-requests-page-container {
+    padding: var(--space-sm, 12px);
+    gap: var(--space-sm, 12px);
+  }
+
+  .view-desktop-tablet {
+    display: none;
+  }
+
+  .view-mobile-cards {
+    display: block;
+  }
+
+  .desktop-pagination-wrapper {
+    display: none !important;
+  }
+
+  .toast-notification-banner {
+    left: 16px;
+    right: 16px;
+    top: 60px;
+    text-align: center;
+    justify-content: center;
+  }
+}

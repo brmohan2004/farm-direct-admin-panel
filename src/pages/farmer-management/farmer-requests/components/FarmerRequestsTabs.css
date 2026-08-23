@@ -1,0 +1,114 @@
+/* FarmerRequestsTabs Component Styles */
+.farmer-requests-tabs-container {
+  width: 100%;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.farmer-requests-tabs-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  width: 100%;
+  min-width: 480px;
+}
+
+.farmer-requests-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #6b7280);
+  font-size: var(--font-size-xs, 0.8125rem);
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius-sm, 6px);
+  transition: all var(--transition-fast, 150ms ease);
+  position: relative;
+}
+
+.farmer-requests-tab-btn:hover {
+  color: var(--text-primary, #111827);
+  background-color: var(--bg-hover, #f9fafb);
+}
+
+.farmer-requests-tab-btn.active {
+  color: var(--primary, #16a34a);
+  font-weight: 600;
+  background-color: #ffffff;
+}
+
+.farmer-requests-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background-color: var(--primary, #16a34a);
+  border-radius: 2px;
+}
+
+.tab-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge-all {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.badge-pending {
+  background-color: #ffedd5;
+  color: #ea580c;
+}
+
+.badge-approved {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.badge-rejected {
+  background-color: #ffe4e6;
+  color: #e11d48;
+}
+
+@media (max-width: 640px) {
+  .farmer-requests-tabs-container {
+    padding: 2px;
+  }
+  
+  .farmer-requests-tabs-list {
+    min-width: unset;
+    grid-template-columns: repeat(4, minmax(max-content, 1fr));
+  }
+
+  .farmer-requests-tab-btn {
+    padding: 8px 10px;
+    gap: 4px;
+    font-size: 0.75rem;
+  }
+
+  .tab-count-badge {
+    min-width: 20px;
+    height: 18px;
+    font-size: 0.68rem;
+    padding: 0 4px;
+  }
+}

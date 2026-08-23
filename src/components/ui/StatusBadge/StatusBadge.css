@@ -1,0 +1,73 @@
+/* Status Badge Component Styles */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 500;
+  font-size: var(--font-size-xs, 0.75rem);
+  line-height: 1;
+  white-space: nowrap;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.status-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.status-badge--sm {
+  padding: 3px 8px;
+  font-size: 0.7rem;
+}
+
+.status-badge--md {
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+}
+
+.status-badge--lg {
+  padding: 6px 14px;
+  font-size: 0.875rem;
+}
+
+/* Status Variations */
+.status-badge--pending {
+  background-color: #fff7ed;
+  color: #d97706;
+  border: 1px solid #fed7aa;
+}
+.status-badge--pending .status-badge-dot {
+  background-color: #f59e0b;
+}
+
+.status-badge--approved {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+.status-badge--approved .status-badge-dot {
+  background-color: #22c55e;
+}
+
+.status-badge--rejected {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+.status-badge--rejected .status-badge-dot {
+  background-color: #ef4444;
+}
+
+.status-badge--hold {
+  background-color: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+.status-badge--hold .status-badge-dot {
+  background-color: #94a3b8;
+}
